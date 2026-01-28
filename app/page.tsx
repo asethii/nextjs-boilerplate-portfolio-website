@@ -1,21 +1,15 @@
 'use client';
 
-import Logo from "./components/Logo";
-import ThemeToggle from "./components/ThemeToggle";
+import Header from "./components/Header";
 import ClientOnly from "./components/ClientOnly";
 import PageContent from "./components/PageContent";
 
 export default function Home() {
   return (
     <div>
-      <header className="flex items-center justify-between px-8 py-4 bg-[#FAF8F6]">
-        <ClientOnly>
-          <Logo />
-        </ClientOnly>
-        <ClientOnly>
-          <ThemeToggle />
-        </ClientOnly>
-      </header>
+      <ClientOnly>
+        <Header />
+      </ClientOnly>
       <ClientOnly>
         <PageContent />
       </ClientOnly>

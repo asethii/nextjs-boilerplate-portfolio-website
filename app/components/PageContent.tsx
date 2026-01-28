@@ -4,6 +4,8 @@ import { useEffect } from 'react';
 import Image from "next/image";
 import Timeline from "./Timeline";
 import { useTheme } from "@/app/context/ThemeContext";
+import ClientOnly from './ClientOnly';
+import Logo from './Logo';
 
 export default function PageContent() {
   const { theme } = useTheme();
@@ -35,7 +37,11 @@ export default function PageContent() {
             backgroundColor: theme === 'dark' ? '#1F2229' : '#FFFFFF',
           }}
         >
-        
+        <div className="flex flex-col gap-12 mb-20">
+            <ClientOnly>
+                <Logo />
+            </ClientOnly>
+        </div>
         <div className="flex flex-col gap-6 text-center sm:items-start sm:text-left">
           <div className="flex gap-6 items-start">
             <Image
@@ -46,8 +52,10 @@ export default function PageContent() {
               height={128}
               priority
             />
-            <h1 className="text-3xl font-semibold leading-10 tracking-tight text-[#292C34] dark:text-[#EAEAEA]">
-              Senior Web Engineer who builds high-impact, user-centered digital experiences.
+            <h1 className="text-3xl font-semibold leading-10 tracking-tight" style={{
+              color: theme === 'dark' ? '#EAEAEA' : '#292C34',
+            }}>
+              Senior Web Engineer who builds high-impact, user-centered and accessible digital experiences.
             </h1>
           </div>
           <p>
@@ -62,7 +70,9 @@ For 15+ years, I've been designing and engineering modern web solutions across t
 </p>
 <p>Whether I'm rethinking an e-commerce-driven lead funnel, automating partner website generation for thousands of dealers, or building AI tools to improve accessibility and content quality, I focus on one thing:
 </p>
-          <p className="text-lg leading-8 text-[#72757E] dark:text-[#ADADAD]">
+          <p className="text-lg leading-8" style={{
+            color: theme === 'dark' ? '#ADADAD' : '#72757E',
+          }}>
             Delivering fast, intuitive, reliable experiences that make the web better — for users, developers, and businesses.
           </p>
         </div>

@@ -20,8 +20,8 @@ export default function Logo() {
     <Image
       src={theme === 'dark' ? '/logo-dark.png' : '/logo-light.png'}
       alt="Logo"
-      width={40}
-      height={40}
+      width={200}
+      height={200}
       priority
       style={{ width: 'auto', height: 'auto' }}
     />

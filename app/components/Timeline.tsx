@@ -111,9 +111,9 @@ export default function Timeline() {
                 </div>
 
                 {/* Content container */}
-                <div className="grid grid-cols-2 gap-8 pt-2">
-                  {/* Left content */}
-                  <div className={index % 2 === 0 ? 'text-right pr-8' : ''}>
+                <div className="md:grid md:grid-cols-2 md:gap-8 pt-2 flex flex-col">
+                  {/* Left content - Desktop only */}
+                  <div className={`hidden md:block ${index % 2 === 0 ? 'text-right pr-8' : ''}`}>
                     {index % 2 === 0 && (
                       <div>
                         <span className="text-sm font-semibold text-blue-600 dark:text-blue-400">
@@ -137,8 +137,8 @@ export default function Timeline() {
                     )}
                   </div>
 
-                  {/* Right content */}
-                  <div className={index % 2 === 1 ? 'text-left pl-8' : ''}>
+                  {/* Right content - Desktop only */}
+                  <div className={`hidden md:block ${index % 2 === 1 ? 'text-left pl-8' : ''}`}>
                     {index % 2 === 1 && (
                       <div>
                         <span className="text-sm font-semibold text-purple-600 dark:text-purple-400">
@@ -160,6 +160,29 @@ export default function Timeline() {
                         </div>
                       </div>
                     )}
+                  </div>
+
+                  {/* Mobile content - Centered on line */}
+                  <div className="md:hidden w-full px-8 flex flex-col items-center">
+                    <div className="w-full bg-opacity-5 bg-gray-500 dark:bg-gray-400 rounded-lg p-4">
+                      <span className="text-sm font-semibold text-blue-600 dark:text-purple-400">
+                        {event.year}
+                      </span>
+                      <h3 className="text-xl font-bold mt-2 text-black dark:text-white text-left">
+                        {event.title}
+                      </h3>
+                      <div className="text-gray-600 dark:text-gray-400 mt-2 text-left text-sm">
+                        {typeof event.description === 'string' ? (
+                          <p>{event.description}</p>
+                        ) : (
+                          <ul className="list-disc pl-5 space-y-1">
+                            {event.description.map((item, i) => (
+                              <li key={i}>{item}</li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

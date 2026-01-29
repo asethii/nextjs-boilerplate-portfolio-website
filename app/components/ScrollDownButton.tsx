@@ -2,7 +2,7 @@
 
 import { useRef } from 'react';
 
-export default function ScrollDownButton({ contentRef }: { contentRef: React.RefObject<HTMLDivElement> }) {
+export default function ScrollDownButton({ contentRef }: { contentRef: React.RefObject<HTMLDivElement | null> }) {
   const handleClick = () => {
     if (contentRef?.current) {
       contentRef.current.scrollIntoView({ behavior: 'smooth' });

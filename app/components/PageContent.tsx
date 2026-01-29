@@ -85,9 +85,9 @@ export default function PageContent() {
         </main>
         
         {/* Scroll Button */}
-        {getNextSectionRef() && (
+        {currentSection === 0 && (
           <ClientOnly>
-            <ScrollDownButton contentRef={getNextSectionRef()} />
+            <ScrollDownButton contentRef={headshotRef} />
           </ClientOnly>
         )}
       </div>
@@ -139,9 +139,9 @@ export default function PageContent() {
         </main>
 
         {/* Scroll Button */}
-        {getNextSectionRef() && (
+        {currentSection === 1 && (
           <ClientOnly>
-            <ScrollDownButton contentRef={getNextSectionRef()} />
+            <ScrollDownButton contentRef={timelineRef} />
           </ClientOnly>
         )}
       </div>

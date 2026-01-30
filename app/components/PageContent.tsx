@@ -120,21 +120,27 @@ export default function PageContent() {
                 />
               </div>
               <h1 className="text-xl sm:text-3xl font-semibold leading-tight sm:leading-10 tracking-tight" style={{
-                color: theme === 'dark' ? '#EAEAEA' : '#292C34',
+                color: theme === 'dark' ? '#D4A857' : '#292C34',
               }}>
                 Let's build high-impact, user-centered and accessible digital experiences.
               </h1>
+              
             </div>
+            <div>
+                <p>Languages I know: HTML/CSS/JS, C#/.NET, PHP, SQL</p>
+              <p>Tools I use: Figma, PhotoShop, Git, Vercel(deployments), VS Code</p>
+            </div>
+            
             <p>
               For 15+ years, I've been designing and engineering modern web solutions across the full stack using React, .NET, C#, ASP.NET, HTML/CSS, JavaScript, SQL, Shopify, Craft CMS, WordPress, and more. My work blends engineering leadership, management, UI/UX intuition, accessibility standards, and AI-driven automation to create systems that scale.
             </p>
-            <p>I lead projects end-to-end — from concept and prototyping to architecture, development, testing, and launch. I collaborate closely with designers, product, marketing, legal, QA, and executive teams to drive clarity, reduce risk, and deliver outcomes.</p>
+            <p>I lead projects end-to-end - from concept and prototyping to architecture, development, testing, and launch. I collaborate closely with designers, product, marketing, legal, QA, and executive teams to drive clarity, reduce risk, and deliver outcomes.</p>
             <p>Whether I'm rethinking an e-commerce-driven lead funnel, automating partner website generation for thousands of users, or building AI tools to improve accessibility and content quality, I focus on one thing:</p>
-            <p className="text-lg leading-8" style={{
-              color: theme === 'dark' ? '#ADADAD' : '#72757E',
-            }}>
-              Delivering fast, intuitive, reliable experiences that make the web better — for users, developers, and businesses.
-            </p>
+           
+              <h2 className='text-xl font-bold text-center mb-16' style={{
+          color: theme === 'dark' ? '#D4A857' : '#000000',
+        }}>Delivering fast, intuitive, reliable experiences that make the web better - for users, developers, and businesses.</h2>
+            
           </div>
         </main>
 

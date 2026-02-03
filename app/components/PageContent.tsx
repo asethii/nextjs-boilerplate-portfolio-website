@@ -7,6 +7,7 @@ import { useTheme } from "@/app/context/ThemeContext";
 import ClientOnly from './ClientOnly';
 import Logo from './Logo';
 import ScrollDownButton from './ScrollDownButton';
+import ImageCarousel from './ImageCarousel';
 
 export default function PageContent() {
   const { theme } = useTheme();
@@ -139,8 +140,11 @@ export default function PageContent() {
            
               <h2 className='text-xl font-bold text-center mb-16' style={{
           color: theme === 'dark' ? '#D4A857' : '#000000',
-        }}>Delivering fast, intuitive, reliable experiences that make the web better - for users, developers, and businesses.</h2>
+        }}>Delivering fast, intuitive, reliable experiences that make the web better - for users, developers and businesses.</h2>
             
+            <ClientOnly>
+              <ImageCarousel />
+            </ClientOnly>
           </div>
         </main>
 
@@ -167,6 +171,24 @@ export default function PageContent() {
           }}
         >
           <Timeline />
+        </main>
+      </div>
+
+      {/* Section 4: Use Cases */}
+      <div 
+        ref={timelineRef}
+        className="min-h-screen flex items-center justify-center pt-20 pb-20"
+        style={{
+          backgroundColor: theme === 'dark' ? '#181A20' : '#FAF8F6',
+        }}
+      >
+        <main 
+          className="w-full max-w-4xl"
+          style={{
+            backgroundColor: theme === 'dark' ? '#181A20' : '#FAF8F6',
+          }}
+        >
+          Insert Use Cases Here
         </main>
       </div>
     </div>

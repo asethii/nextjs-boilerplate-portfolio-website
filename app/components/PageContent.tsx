@@ -114,7 +114,7 @@ export default function PageContent() {
               {/**
                * Languages and Tools cards. Update the arrays below to add/remove bubbles.
                */}
-              <div className="mt-6 grid gap-6 sm:grid-cols-2">
+              <div className="mt-6 grid gap-6 grid-cols-1">
                 {/* Languages Card */}
                 <div
                   className="p-6 rounded-lg"
@@ -148,7 +148,7 @@ export default function PageContent() {
                   <p className="mb-4 text-sm" style={{ color: theme === 'dark' ? '#B9C3D1' : '#374151' }}>Primary languages and markup I use regularly.</p>
 
                   <div className="flex flex-wrap -ml-0">
-                    {['HTML/CSS', 'JavaScript','TypeScript','SQL','C#/.NET'].map((lang) => (
+                    {['HTML/CSS', 'JavaScript','TypeScript','SQL','C#/.NET','PHP'].map((lang) => (
                       <span
                         key={lang}
                         className="inline-flex items-center mr-3 mb-3 px-4 py-2 rounded-full text-sm transition-transform duration-150"
@@ -190,8 +190,7 @@ export default function PageContent() {
                       <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
                       <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
                       <g id="SVGRepo_iconCarrier">
-                        <title>tools</title>
-                        <desc>Created with Sketch Beta.</desc>
+                        <title>tools</title>                        
                         <defs></defs>
                         <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                           <g id="Icon-Set"  transform="translate(-569.000000, -308.000000)" fill="currentColor">
@@ -206,7 +205,7 @@ export default function PageContent() {
                   <p className="mb-4 text-sm" style={{ color: theme === 'dark' ? '#B9C3D1' : '#374151' }}>Frameworks, tools, and platforms I use day-to-day.</p>
 
                   <div className="flex flex-wrap -ml-0">
-                    {['Figma', 'PhotoShop/Illustrator','GitHub Copilot','Vercel','React','Node.js','Git','Docker','Tailwind CSS','Bootstrap','REST APIs','GraphQL'].map((tool) => (
+                    {['Figma', 'PhotoShop/Illustrator','GitHub Copilot','Vercel','React','Node.js','Git','Docker','Tailwind CSS','Bootstrap','REST APIs','GraphQL','Google Analytics','Google Search Console','Google Tag Manager','AWS Cloud Migration'].map((tool) => (
                       <span
                         key={tool}
                         className="inline-flex items-center mr-3 mb-3 px-4 py-2 rounded-full text-sm transition-transform duration-150"
@@ -227,7 +226,7 @@ export default function PageContent() {
             </div>
             
             <p>
-              For 15+ years, I've been designing and engineering modern web solutions across the full stack using React, .NET, C#, ASP.NET, HTML/CSS, JavaScript, SQL, Shopify, Craft CMS, WordPress, and more. My work blends engineering leadership, management, UI/UX intuition, accessibility standards, and AI-driven automation to create systems that scale.
+              For 15+ years, I have been designing and engineering modern web solutions across the full stack using React, C#/.NET, HTML/CSS, JavaScript, SQL, various CMS Systems (Wordpress, Craft, Shopify) and more. My work blends engineering leadership, management, UI/UX intuition, accessibility standards, and AI-driven automation to create systems that scale.
             </p>
             <p>I lead projects end-to-end - from concept and prototyping to architecture, development, testing, and launch. I collaborate closely with designers, product, marketing, legal, QA, and executive teams to drive clarity, reduce risk, and deliver outcomes.</p>
             <p>Whether I'm rethinking an e-commerce-driven lead funnel, automating partner website generation for thousands of users, or building AI tools to improve accessibility and content quality, I focus on one thing:</p>

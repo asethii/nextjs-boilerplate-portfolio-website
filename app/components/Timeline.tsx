@@ -11,7 +11,7 @@ interface TimelineEvent {
 
 const events: TimelineEvent[] = [
   {
-    year: '2013-Current',
+    year: '2013-2025',
     title: 'Front-End Developer / UX Designer',
     description: [
       'Began transitioning from design-focused work into engineering leadership and full-stack development',

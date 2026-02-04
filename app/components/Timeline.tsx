@@ -40,9 +40,11 @@ const events: TimelineEvent[] = [
     year: '2002-2010',
     title: 'Web Designer / Junior Developer',
     description: [
-      'Led cross-functional engineering teams',
-      'Mentored junior developers',
-      'Managed large-scale projects from concept to launch'
+      'Began my career as a web designer, focusing on creating visually appealing and user-friendly websites.',
+      'Collaborated with clients to understand their needs and translate them into effective design solutions.',
+      'Gained experience in HTML, CSS, and basic JavaScript to implement designs into functional web pages.',
+      'Assisted in the development and maintenance of websites, ensuring they were up-to-date and aligned with client goals.',
+      'Learned the fundamentals of web development, including best practices for usability, accessibility, and SEO.'
     ],
   },
   {
@@ -50,7 +52,7 @@ const events: TimelineEvent[] = [
     title: '2026 and Beyond',
     description: [
       'I am looking for a engineering or technical leadership role where I can leverage my development experience to help rapidly prototype and itterate on UI/UX focused solutions.',
-      'Create tools using agentic AI-driven systems that help optmize workflows between designers',
+      'Create tools using agentic AI-driven systems that help optmize workflows between designers and engineers, and help catch and mitigate quality assurance and compliance related issues before they occur.',
       'Build systems that help catch and mitigate quality assurance and compliance related issues before they occur.'
     ],
   },

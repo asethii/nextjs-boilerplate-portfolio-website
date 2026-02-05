@@ -205,7 +205,7 @@ export default function PageContent() {
                   <p className="mb-4 text-sm" style={{ color: theme === 'dark' ? '#B9C3D1' : '#374151' }}>Frameworks, tools, and platforms I use day-to-day.</p>
 
                   <div className="flex flex-wrap -ml-0">
-                    {['Figma', 'PhotoShop/Illustrator','GitHub Copilot','Vercel','React','Node.js','Git','Docker','Tailwind CSS','Bootstrap','REST APIs','GraphQL','Google Analytics','Google Search Console','Google Tag Manager','AWS Cloud Migration'].map((tool) => (
+                    {['Figma', 'PhotoShop/Illustrator','Adobe Animate','GitHub Copilot','Vercel','React/Next.js','Node.js','Git','Docker','Tailwind CSS','Bootstrap','REST APIs','GraphQL','Google Analytics','Google Search Console','Google Tag Manager','AWS Cloud Migration','IIS','Visual Studio','SQL Server'].map((tool) => (
                       <span
                         key={tool}
                         className="inline-flex items-center mr-3 mb-3 px-4 py-2 rounded-full text-sm transition-transform duration-150"
@@ -218,6 +218,54 @@ export default function PageContent() {
                         onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = 'translateY(0)'; (e.currentTarget as HTMLElement).style.boxShadow = 'none'; }}
                       >
                         {tool}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Practices Card */}
+                <div
+                  className="p-6 rounded-lg"
+                  style={{
+                    backgroundColor: theme === 'dark' ? '#16181B' : '#FFFFFF',
+                    boxShadow: theme === 'dark' ? '0 6px 18px rgba(0,0,0,0.6)' : '0 6px 18px rgba(31,41,55,0.06)',
+                    border: theme === 'dark' ? '1px solid rgba(212,168,87,0.06)' : '1px solid rgba(15,23,42,0.04)'
+                  }}
+                >
+                  <div className="flex items-center mb-4">
+                    <svg
+                      viewBox="0 0 24 24"
+                      width={20}
+                      height={20}
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-hidden="true"
+                      role="img"
+                      className="mr-2 flex-shrink-0"
+                      style={{ color: theme === 'dark' ? '#D4A857' : '#0F172A' }}
+                    >
+                      <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" fill="none" />
+                      <path d="M8 12h8M12 8v8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                    </svg>
+                    <h3 className="text-lg font-semibold" style={{ color: theme === 'dark' ? '#D4A857' : '#0F172A' }}>Practices</h3>
+                  </div>
+
+                  <p className="mb-4 text-sm" style={{ color: theme === 'dark' ? '#B9C3D1' : '#374151' }}>Core practices and methodologies I apply to every project.</p>
+
+                  <div className="flex flex-wrap -ml-0">
+                    {['Accessibility (508 / WCAG)', 'UX/UI design systems', 'CMS governance', 'Stakeholder requirements gathering'].map((practice) => (
+                      <span
+                        key={practice}
+                        className="inline-flex items-center mr-3 mb-3 px-4 py-2 rounded-full text-sm transition-transform duration-150"
+                        style={{
+                          backgroundColor: theme === 'dark' ? 'rgba(212,168,87,0.06)' : '#FEF3C7',
+                          color: theme === 'dark' ? '#D4A857' : '#92400E',
+                          cursor: 'default',
+                        }}
+                        onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-3px)'; (e.currentTarget as HTMLElement).style.boxShadow = theme === 'dark' ? '0 6px 14px rgba(0,0,0,0.6)' : '0 6px 14px rgba(2,6,23,0.06)'; }}
+                        onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = 'translateY(0)'; (e.currentTarget as HTMLElement).style.boxShadow = 'none'; }}
+                      >
+                        {practice}
                       </span>
                     ))}
                   </div>
@@ -238,12 +286,64 @@ export default function PageContent() {
             <ClientOnly>
               <ImageCarousel />
             </ClientOnly>
+
+
+            
+      {/* Enterprise & Government Web Experience Section */}
+      <div className="w-full flex justify-center pt-8 pb-8">
+        <section
+          className="w-full max-w-4xl px-4 p-6 rounded-lg"
+          style={{
+            backgroundColor: theme === 'dark' ? '#16181B' : '#FFFFFF',
+            boxShadow: theme === 'dark' ? '0 6px 18px rgba(0,0,0,0.6)' : '0 6px 18px rgba(31,41,55,0.06)',
+            border: theme === 'dark' ? '1px solid rgba(212,168,87,0.06)' : '1px solid rgba(15,23,42,0.04)'
+          }}
+        >
+          <div className="flex items-center mb-4">
+            <h3 className="text-lg font-semibold" style={{ color: theme === 'dark' ? '#D4A857' : '#0F172A' }}>Enterprise & Government Web Experience</h3>
+          </div>
+          <p className="mb-4 text-sm" style={{ color: theme === 'dark' ? '#B9C3D1' : '#374151' }}>Key projects and responsibilities in large-scale, public sector and enterprise environments.</p>
+          <ul className="list-disc pl-6 space-y-2 text-sm" style={{ color: theme === 'dark' ? '#B9C3D1' : '#374151' }}>
+            <li>Led front-end development and UX modernization for enterprise-scale, public-facing websites used by millions of users</li>
+            <li>Supported cloud migrations (on-prem → AWS) in collaboration with DevOps teams</li>
+            <li>Maintained and enhanced IIS-hosted .NET websites with HTML, CSS, JavaScript</li>
+            <li>Delivered websites compliant with Section 508 / WCAG 2.x accessibility standards</li>
+            <li>Worked with security teams on annual certifications, remediation, and audits</li>
+            <li>Supported content publishing workflows for high-volume CMS-driven sites</li>
+          </ul>
+        </section>
+      </div>
+
+      {/* Cloud Migration Experience Callout */}
+      <div className="w-full flex justify-center pb-8">
+        <section
+          className="w-full max-w-4xl px-4 p-6 rounded-lg"
+          style={{
+            backgroundColor: theme === 'dark' ? '#16181B' : '#FFFFFF',
+            boxShadow: theme === 'dark' ? '0 6px 18px rgba(0,0,0,0.6)' : '0 6px 18px rgba(31,41,55,0.06)',
+            border: theme === 'dark' ? '1px solid rgba(212,168,87,0.06)' : '1px solid rgba(15,23,42,0.04)'
+          }}
+        >
+          <div className="flex items-center mb-4">
+            <h3 className="text-lg font-semibold" style={{ color: theme === 'dark' ? '#D4A857' : '#0F172A' }}>Cloud Migration Experience</h3>
+          </div>
+          <p className="mb-4 text-sm" style={{ color: theme === 'dark' ? '#B9C3D1' : '#374151' }}>Recent cloud migration and DevOps collaboration highlights.</p>
+          <ul className="list-disc pl-6 space-y-1 text-sm" style={{ color: theme === 'dark' ? '#B9C3D1' : '#374151' }}>
+            <li>Participated in migration of a Craft CMS website from on-prem infrastructure to AWS</li>
+            <li>Partnered with DevOps to update environment configurations, resolve deployment issues, and validate feature parity post-migration</li>
+            <li>Performed functional testing and regression validation to ensure no loss of public-facing functionality</li>
+            <li>Supported post-migration stabilization and bug fixes</li>
+          </ul>
+        </section>
+      </div>
+      
           </div>
         </main>
 
         {/* Scroll Button */}
 
       </div>
+
 
       {/* Section 3: Timeline - Full Viewport with Extra Spacing */}
       <div 

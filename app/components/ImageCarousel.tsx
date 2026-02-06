@@ -8,6 +8,7 @@ import { useTheme } from '@/app/context/ThemeContext';
 type Slide = { type: 'video' | 'image'; src: string; url?: string };
 
 export default function ImageCarousel() {
+
   const { theme } = useTheme();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -20,6 +21,40 @@ export default function ImageCarousel() {
 
   const [viewportWidth, setViewportWidth] = useState<number>(typeof window !== 'undefined' ? window.innerWidth : 1200);
 
+  // Project card data (should match slides)
+  const projectCards = [
+    {
+      title: 'Marketing Website build with Craft Content Management System',
+      techs: ['Cloud Migration', 'PHP', 'HTML', 'JavaScript', 'Craft CMS', 'Content Strategy', 'SEO'],
+      description: 'Marketing website for a smart home solutions provider, built using the Craft Content Management System (CMS) to enable easy content updates and management. This project was also migrated to the cloud to improve scalability and performance, ensuring a seamless experience for users exploring smart home products and solutions.'
+    },
+    {
+      title: 'Mobile App Smart Home Demo',
+      techs: ['HTML', 'CSS', 'JavaScript', 'Adobe Animate', 'Adobe After Effects'],
+      description: 'Interactive mobile app demo showcasing smart home features. Built with HTML/CSS/JS and animated using Adobe Animate and After Effects to create engaging transitions and interactions.'
+    },
+    {
+      title: 'Smart Home Web Demo',
+      techs: ['HTML', 'CSS', 'JavaScript', 'Adobe Animate', 'Adobe After Effects'],
+      description: 'Interactive web demo showcasing smart home features. Built with HTML/CSS/JS and animated using Adobe Animate and After Effects to engage users.'
+    },
+    {
+      title: 'Lead Generation Wizard',
+      techs: ['C#/.Net', 'SQL', 'Custom CMS Build', 'PhotoShop/Illustrator', 'UX Design'],
+      description: 'Lead generation wizard built for a smart home solutions provider. Developed using C#/.Net with a SQL database backend to capture and manage leads. The wizard features a user-friendly interface designed in PhotoShop/Illustrator, guiding users through a series of questions to recommend the best smart home solutions based on their needs and preferences. The leads are distributed to participating partners and are managed in an internal CRM.'
+    },
+    {
+      title: 'Partner Branded Website Templates',
+      techs: ['C#/.Net', 'SQL', 'Custom CMS Build','Dynamic Branding', 'PhotoShop/Illustrator', 'UX Design'],
+      description: 'Partner branded website templates developed for a smart home solutions provider. These templates are built using C#/.Net and SQL, featuring dynamic branding capabilities to allow partners to customize the look and feel according to their brand guidelines. The design and user experience were crafted using PhotoShop and Illustrator to ensure a seamless and engaging interface.'
+    },
+    {
+      title: 'Embeddable Smart Home Demo with Custom Branding',
+      techs: ['HTML', 'CSS', 'JavaScript', 'Cloud Migration'],
+      description: 'Interactive web demo showcasing smart home features. Built with HTML/CSS/JS and animated using Adobe Animate and After Effects to engage users. Javascript was used to allow partners to customize the demo with their own branding color by passing a hex code in the URL. For example, adding ?color=ff0000 would change the accent color to red.'
+    },
+  ];
+
   useEffect(() => {
     const onResize = () => setViewportWidth(window.innerWidth);
     window.addEventListener('resize', onResize);
@@ -27,11 +62,11 @@ export default function ImageCarousel() {
   }, []);
 
   const slides: Slide[] = [
+    { type: 'image', src: '/demo5.png', url: 'https://alarm.com/' },
     { type: 'image', src: '/demo1.png', url: 'https://www.alarm.com/dealerbranding/v2/demo/v2/index.html' },
     { type: 'image', src: '/demo2.png', url: 'https://www.alarm.com/dealerbranding/embed/house_diagram/house.html' },
     { type: 'image', src: '/demo4.png', url: 'https://www.alarm.com/getstarted' },
     { type: 'image', src: '/demo3.png', url: 'https://www.alarm.com/us/alarmcom' },
-    { type: 'image', src: '/demo5.png', url: 'https://alarm.com/' },
     { type: 'image', src: '/demo6.png', url: 'https://www.alarm.com/dealerbranding/embed/powering_the_smart_home/house-diagram.html' },
   ];
 
@@ -122,7 +157,7 @@ export default function ImageCarousel() {
 
   return (
     <div className="w-full flex justify-center py-8">
-      <div className="w-full max-w-[640px] px-4 sm:px-0">
+      <div className="w-full max-w-[640px] px-[10px] sm:px-[20px]">
         <div
           className="relative overflow-hidden rounded-lg"
           style={{
@@ -319,6 +354,43 @@ export default function ImageCarousel() {
               <polyline points="9 18 15 12 9 6"></polyline>
             </svg>
           </button>
+        </div>
+        {/* Project Description Cards - one per slide, only active is visible */}
+        <div
+          className="mt-8"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          <div
+            className="p-6 rounded-lg w-full sm:w-full transition-opacity duration-500 mx-auto"
+            style={{
+              backgroundColor: theme === 'dark' ? '#16181B' : '#FFFFFF',
+              boxShadow: theme === 'dark' ? '0 6px 18px rgba(0,0,0,0.6)' : '0 6px 18px rgba(31,41,55,0.06)',
+              border: theme === 'dark' ? '1px solid rgba(212,168,87,0.06)' : '1px solid rgba(15,23,42,0.04)',
+              width: '80vw',
+              maxWidth: '100%',
+            }}
+          >
+            <h3 className="text-lg font-semibold mb-3" style={{ color: theme === 'dark' ? '#D4A857' : '#0F172A' }}>{projectCards[currentIndex].title}</h3>
+            <div className="flex flex-wrap mb-4">
+              {projectCards[currentIndex].techs.map((tech) => (
+                <span
+                  key={tech}
+                  className="inline-flex items-center mr-3 mb-3 px-4 py-2 rounded-full text-sm transition-transform duration-150"
+                  style={{
+                    backgroundColor: theme === 'dark' ? 'rgba(212,168,87,0.08)' : '#EFF6FF',
+                    color: theme === 'dark' ? '#D4A857' : '#1E3A8A',
+                    cursor: 'default',
+                  }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-3px)'; (e.currentTarget as HTMLElement).style.boxShadow = theme === 'dark' ? '0 6px 14px rgba(0,0,0,0.6)' : '0 6px 14px rgba(2,6,23,0.06)'; }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(0)'; (e.currentTarget as HTMLElement).style.boxShadow = 'none'; }}
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+            <p className="text-sm" style={{ color: theme === 'dark' ? '#B9C3D1' : '#374151' }}>{projectCards[currentIndex].description}</p>
+          </div>
         </div>
       </div>
     </div>

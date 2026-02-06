@@ -1,5 +1,5 @@
-'use client';
 
+'use client';
 import { useEffect, useRef, useState } from 'react';
 import { useTheme } from '@/app/context/ThemeContext';
 
@@ -63,6 +63,11 @@ export default function Timeline() {
   const { theme } = useTheme();
   const [visibleIndices, setVisibleIndices] = useState<number[]>([]);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [showAllBullets, setShowAllBullets] = useState<{ [key: number]: boolean }>({});
+
+  const handleShowMore = (idx: number) => {
+    setShowAllBullets((prev) => ({ ...prev, [idx]: true }));
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -130,17 +135,38 @@ export default function Timeline() {
                         }}>
                           {event.title}
                         </h3>
-                        <div className="text-left mt-2" style={{
-                          color: theme === 'dark' ? '#FFFFFF' : '#4B5563',
-                        }}>
+                        <div
+                          className="p-6 rounded-lg"
+                          style={{
+                            backgroundColor: theme === 'dark' ? '#33363b' : '#FFFFFF',
+                            boxShadow: theme === 'dark' ? '0 6px 18px rgba(0,0,0,0.6)' : '0 6px 18px rgba(31,41,55,0.06)',
+                            border: theme === 'dark' ? '1px solid rgba(212,168,87,0.06)' : '1px solid rgba(15,23,42,0.04)',
+                            color: theme === 'dark' ? '#FFFFFF' : '#4B5563',
+                          }}
+                        >
                           {typeof event.description === 'string' ? (
                             <p>{event.description}</p>
                           ) : (
-                            <ul className="list-disc pl-5 space-y-1">
-                              {event.description.map((item, i) => (
-                                <li key={i}>{item}</li>
-                              ))}
-                            </ul>
+                            <>
+                              <ul className="list-disc pl-5 space-y-1 text-left" style={{ fontSize: '12px' }}>
+                                {(showAllBullets[index]
+                                  ? event.description
+                                  : event.description.slice(0, 2)
+                                ).map((item, i) => (
+                                  <li key={i}>{item}</li>
+                                ))}
+                              </ul>
+                              {event.description.length > 2 && !showAllBullets[index] && (
+                                <button
+                                  className="text-xs text-blue-600 underline cursor-pointer mt-1"
+                                  onClick={() => handleShowMore(index)}
+                                  style={{ background: 'none', border: 'none', padding: 0 }}
+                                  type="button"
+                                >
+                                  Show More
+                                </button>
+                              )}
+                            </>
                           )}
                         </div>
                       </div>
@@ -159,17 +185,38 @@ export default function Timeline() {
                         }}>
                           {event.title}
                         </h3>
-                        <div className="mt-2 text-left" style={{
-                          color: theme === 'dark' ? '#FFFFFF' : '#4B5563',
-                        }}>
+                        <div
+                          className="p-6 rounded-lg mt-2"
+                          style={{
+                            backgroundColor: theme === 'dark' ? '#33363b' : '#FFFFFF',
+                            boxShadow: theme === 'dark' ? '0 6px 18px rgba(0,0,0,0.6)' : '0 6px 18px rgba(31,41,55,0.06)',
+                            border: theme === 'dark' ? '1px solid rgba(212,168,87,0.06)' : '1px solid rgba(15,23,42,0.04)',
+                            color: theme === 'dark' ? '#FFFFFF' : '#4B5563',
+                          }}
+                        >
                           {typeof event.description === 'string' ? (
                             <p>{event.description}</p>
                           ) : (
-                            <ul className="list-disc pl-5 space-y-1">
-                              {event.description.map((item, i) => (
-                                <li key={i}>{item}</li>
-                              ))}
-                            </ul>
+                            <>
+                              <ul className="list-disc pl-5 space-y-1 text-left" style={{ fontSize: '12px' }}>
+                                {(showAllBullets[index]
+                                  ? event.description
+                                  : event.description.slice(0, 2)
+                                ).map((item, i) => (
+                                  <li key={i}>{item}</li>
+                                ))}
+                              </ul>
+                              {event.description.length > 2 && !showAllBullets[index] && (
+                                <button
+                                  className="text-xs text-blue-600 underline cursor-pointer mt-1"
+                                  onClick={() => handleShowMore(index)}
+                                  style={{ background: 'none', border: 'none', padding: 0 }}
+                                  type="button"
+                                >
+                                  Show More
+                                </button>
+                              )}
+                            </>
                           )}
                         </div>
                       </div>
@@ -178,7 +225,14 @@ export default function Timeline() {
 
                   {/* Mobile content - Centered on line */}
                   <div className="md:hidden w-full px-8 flex flex-col items-center">
-                    <div className="w-full bg-opacity-5 bg-gray-500 dark:bg-gray-400 rounded-lg p-4">
+                    <div
+                      className="w-full p-6 rounded-lg"
+                      style={{
+                        backgroundColor: theme === 'dark' ? '#33363b' : '#FFFFFF',
+                        boxShadow: theme === 'dark' ? '0 6px 18px rgba(0,0,0,0.6)' : '0 6px 18px rgba(31,41,55,0.06)',
+                        border: theme === 'dark' ? '1px solid rgba(212,168,87,0.06)' : '1px solid rgba(15,23,42,0.04)',
+                      }}
+                    >
                       <span className="text-sm font-semibold text-blue-600 dark:text-purple-400">
                         {event.year}
                       </span>
@@ -193,11 +247,26 @@ export default function Timeline() {
                         {typeof event.description === 'string' ? (
                           <p>{event.description}</p>
                         ) : (
-                          <ul className="list-disc pl-5 space-y-1">
-                            {event.description.map((item, i) => (
-                              <li key={i}>{item}</li>
-                            ))}
-                          </ul>
+                          <>
+                            <ul className="list-disc pl-5 space-y-1 text-left" style={{ fontSize: '12px' }}>
+                              {(showAllBullets[index]
+                                ? event.description
+                                : event.description.slice(0, 2)
+                              ).map((item, i) => (
+                                <li key={i}>{item}</li>
+                              ))}
+                            </ul>
+                            {event.description.length > 2 && !showAllBullets[index] && (
+                              <button
+                                className="text-xs text-blue-600 underline cursor-pointer mt-1"
+                                onClick={() => handleShowMore(index)}
+                                style={{ background: 'none', border: 'none', padding: 0 }}
+                                type="button"
+                              >
+                                Show More
+                              </button>
+                            )}
+                          </>
                         )}
                       </div>
                     </div>

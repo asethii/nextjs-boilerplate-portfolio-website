@@ -129,7 +129,7 @@ export default function PageContent() {
                 </h1>
                 <div className="flex gap-4 mt-2 w-full">
                   <a
-                    href="https://github.com/ashishsethi"
+                    href="https://github.com/asethii"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center px-4 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#23272f] text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-[#33363b] transition-colors duration-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#D4A857]"
@@ -141,7 +141,7 @@ export default function PageContent() {
                     GitHub
                   </a>
                   <a
-                    href="https://linkedin.com/in/ashishsethi"
+                    href="https://www.linkedin.com/feed/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center px-4 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#23272f] text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-[#33363b] transition-colors duration-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#D4A857]"

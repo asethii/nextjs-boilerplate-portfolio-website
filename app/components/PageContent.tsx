@@ -125,7 +125,7 @@ export default function PageContent() {
                   className="text-xl sm:text-3xl font-semibold leading-tight sm:leading-10 tracking-tight w-full"
                   style={{ color: theme === 'dark' ? '#D4A857' : '#292C34' }}
                 >
-                  Let's build high-impact, user-centered and accessible digital experiences.
+                  Let's build high-impact, user-centered experiences.
                 </h1>
                 <div className="flex gap-4 mt-2 w-full">
                   <a

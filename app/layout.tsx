@@ -1,16 +1,23 @@
 import type { Metadata } from "next";
-import { Merriweather, Inter } from "next/font/google";
+import { Montserrat, Aboreto, Fraunces } from "next/font/google";
 import { ThemeProvider } from "./context/ThemeContext";
 import "./globals.css";
 
-const merriweather = Merriweather({
-  weight: ["400", "700"],
-  variable: "--font-merriweather",
+const montserrat = Montserrat({
+  weight: ["400"],
+  variable: "--font-montserrat",
   subsets: ["latin"],
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+const aboreto = Aboreto({
+  weight: ["400"],
+  variable: "--font-aboreto",
+  subsets: ["latin"],
+});
+
+const fraunces = Fraunces({
+  weight: ["700"],
+  variable: "--font-fraunces",
   subsets: ["latin"],
 });
 
@@ -30,8 +37,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${merriweather.variable} antialiased`}
-        style={{ fontFamily: 'var(--font-inter)' }}
+        className={`${montserrat.variable} ${aboreto.variable} ${fraunces.variable} antialiased`}
+        style={{ fontFamily: 'var(--font-montserrat)' }}
       >
         <ThemeProvider>
           {children}

@@ -35,19 +35,22 @@
   --color-dark-secondary: var(--dark-secondary);
   --color-dark-accent: var(--dark-accent);
 
-  --font-sans: var(--font-inter);
-  --font-serif: var(--font-merriweather);
+  --font-sans: var(--font-montserrat);
+  --font-serif: var(--font-aboreto);
 }
 
 /* Light Mode (Default) */
 body {
   background: var(--light-bg);
   color: var(--light-primary);
-  font-family: var(--font-inter, sans-serif);
+  font-family: var(--font-montserrat, sans-serif);
+  letter-spacing: 0.02em;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-merriweather, serif);
+  font-family: var(--font-aboreto, sans-serif);
+  font-weight: 700;
+  letter-spacing: 0.05em;
 }
 
 /* Dark Mode */

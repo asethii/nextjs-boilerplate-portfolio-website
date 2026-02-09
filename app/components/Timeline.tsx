@@ -47,16 +47,6 @@ const events: TimelineEvent[] = [
       'Learned the fundamentals of web development, including best practices for usability, accessibility, and SEO.'
     ],
   },
-  {
-    year: 'If you go this far, thank you!',
-    title: '2026 and Beyond',
-    description: [
-      'I am looking for a engineering or technical leadership role where I can leverage my development experience to help rapidly prototype and itterate on UI/UX focused solutions.',
-      'Create tools using agentic AI-driven systems that help optmize workflows between designers and engineers, and help catch and mitigate quality assurance and compliance related issues before they occur.',
-      'Build systems that help catch and mitigate quality assurance and compliance related issues before they occur.'
-    ],
-  },
- 
 ];
 
 export default function Timeline() {
@@ -100,7 +90,14 @@ export default function Timeline() {
 
         <div className="relative">
           {/* Center line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-500 to-purple-600" />
+          <div 
+            className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full"
+            style={{
+              background: theme === 'dark' 
+                ? 'linear-gradient(to bottom, #D4A857, #B8860B)' 
+                : 'linear-gradient(to bottom, #D97706, #92400E)'
+            }}
+          />
 
           {/* Timeline events */}
           <div className="space-y-12">
@@ -116,9 +113,13 @@ export default function Timeline() {
               >
                 {/* Center dot - absolutely positioned on the line */}
                 <div className="absolute left-1/2 transform -translate-x-1/2 top-0">
-                  <div className={`w-6 h-6 rounded-full border-4 border-white dark:border-black shadow-lg ${
-                    index % 2 === 0 ? 'bg-blue-600' : 'bg-purple-600'
-                  }`} />
+                  <div 
+                    className="w-6 h-6 rounded-full border-4 shadow-lg"
+                    style={{
+                      backgroundColor: theme === 'dark' ? '#D4A857' : '#D97706',
+                      borderColor: theme === 'dark' ? '#000000' : '#FFFFFF'
+                    }}
+                  />
                 </div>
 
                 {/* Content container */}
@@ -127,7 +128,9 @@ export default function Timeline() {
                   <div className={`hidden md:block ${index % 2 === 0 ? 'text-right pr-8' : ''}`}>
                     {index % 2 === 0 && (
                       <div>
-                        <span className="text-sm font-semibold text-blue-600 dark:text-blue-400">
+                        <span className="text-sm font-semibold" style={{
+                          color: theme === 'dark' ? '#D4A857' : '#92400E',
+                        }}>
                           {event.year}
                         </span>
                         <h3 className="text-2xl font-bold mt-2" style={{
@@ -158,9 +161,9 @@ export default function Timeline() {
                               </ul>
                               {event.description.length > 2 && !showAllBullets[index] && (
                                 <button
-                                  className="text-xs text-blue-600 underline cursor-pointer mt-1"
+                                  className="text-xs underline cursor-pointer mt-1"
                                   onClick={() => handleShowMore(index)}
-                                  style={{ background: 'none', border: 'none', padding: 0 }}
+                                  style={{ background: 'none', border: 'none', padding: 0, color: theme === 'dark' ? '#D4A857' : '#92400E' }}
                                   type="button"
                                 >
                                   Show More
@@ -177,7 +180,9 @@ export default function Timeline() {
                   <div className={`hidden md:block ${index % 2 === 1 ? 'text-left pl-8' : ''}`}>
                     {index % 2 === 1 && (
                       <div>
-                        <span className="text-sm font-semibold text-purple-600 dark:text-purple-400">
+                        <span className="text-sm font-semibold" style={{
+                          color: theme === 'dark' ? '#D4A857' : '#92400E',
+                        }}>
                           {event.year}
                         </span>
                         <h3 className="text-2xl font-bold mt-2" style={{
@@ -208,9 +213,9 @@ export default function Timeline() {
                               </ul>
                               {event.description.length > 2 && !showAllBullets[index] && (
                                 <button
-                                  className="text-xs text-blue-600 underline cursor-pointer mt-1"
+                                  className="text-xs underline cursor-pointer mt-1"
                                   onClick={() => handleShowMore(index)}
-                                  style={{ background: 'none', border: 'none', padding: 0 }}
+                                  style={{ background: 'none', border: 'none', padding: 0, color: theme === 'dark' ? '#D4A857' : '#92400E' }}
                                   type="button"
                                 >
                                   Show More
@@ -233,7 +238,9 @@ export default function Timeline() {
                         border: theme === 'dark' ? '1px solid rgba(212,168,87,0.06)' : '1px solid rgba(15,23,42,0.04)',
                       }}
                     >
-                      <span className="text-sm font-semibold text-blue-600 dark:text-purple-400">
+                      <span className="text-sm font-semibold" style={{
+                        color: theme === 'dark' ? '#D4A857' : '#92400E',
+                      }}>
                         {event.year}
                       </span>
                       <h3 className="text-xl font-bold mt-2 text-left" style={{
@@ -258,9 +265,9 @@ export default function Timeline() {
                             </ul>
                             {event.description.length > 2 && !showAllBullets[index] && (
                               <button
-                                className="text-xs text-blue-600 underline cursor-pointer mt-1"
+                                className="text-xs underline cursor-pointer mt-1"
                                 onClick={() => handleShowMore(index)}
-                                style={{ background: 'none', border: 'none', padding: 0 }}
+                                style={{ background: 'none', border: 'none', padding: 0, color: theme === 'dark' ? '#D4A857' : '#92400E' }}
                                 type="button"
                               >
                                 Show More
@@ -274,6 +281,36 @@ export default function Timeline() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* Plain card outside timeline */}
+        <div className="mt-16 max-w-2xl mx-auto">
+          <div
+            className="p-8 rounded-lg text-center"
+            style={{
+              backgroundColor: theme === 'dark' ? '#33363b' : '#FFFFFF',
+              boxShadow: theme === 'dark' ? '0 6px 18px rgba(0,0,0,0.6)' : '0 6px 18px rgba(31,41,55,0.06)',
+              border: theme === 'dark' ? '1px solid rgba(212,168,87,0.06)' : '1px solid rgba(15,23,42,0.04)',
+            }}
+          >
+            <h3 className="text-2xl font-bold mb-2" style={{
+              color: theme === 'dark' ? '#D4A857' : '#000000',
+            }}>
+              If you got this far, thank you!
+            </h3>
+            <p className="text-lg font-semibold mb-4" style={{
+              color: theme === 'dark' ? '#FFFFFF' : '#000000',
+            }}>
+              2026 and Beyond
+            </p>
+            <ul className="list-disc pl-5 space-y-2 text-left text-sm" style={{
+              color: theme === 'dark' ? '#FFFFFF' : '#4B5563',
+            }}>
+              <li>I am looking for a engineering or technical leadership role where I can leverage my development experience to help rapidly prototype and itterate on UI/UX focused solutions.</li>
+              <li>Create tools using agentic AI-driven systems that help optmize workflows between designers and engineers, and help catch and mitigate quality assurance and compliance related issues before they occur.</li>
+              <li>Build systems that help catch and mitigate quality assurance and compliance related issues before they occur.</li>
+            </ul>
           </div>
         </div>
       </div>

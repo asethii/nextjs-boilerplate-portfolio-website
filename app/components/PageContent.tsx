@@ -14,8 +14,7 @@ export default function PageContent() {
   const { theme } = useTheme();
   const heroRef = useRef<HTMLDivElement>(null);
   const headshotRef = useRef<HTMLDivElement>(null);
-  const timelineRef = useRef<HTMLDivElement>(null);
-  const [currentSection, setCurrentSection] = useState(0);
+  const parallaxContentRef = useRef<HTMLDivElement>(null);
   const [showScrollArrow, setShowScrollArrow] = useState(true);
 
 
@@ -32,8 +31,22 @@ export default function PageContent() {
     return () => observer.disconnect();
   }, []);
 
-  // Handler for scroll arrow click (optional, for analytics or future logic)
-  const handleScrollArrowClick = () => {};
+  // Parallax scroll effect for content block
+  useEffect(() => {
+    const handleScroll = () => {
+      if (parallaxContentRef.current) {
+        const rect = parallaxContentRef.current.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        const blockCenter = rect.top + rect.height / 2;
+        // Calculate offset: positive when below center, negative when above
+        const offset = Math.min(Math.max((windowHeight / 2 - blockCenter) * 0.3, -100), 100);
+        parallaxContentRef.current.style.setProperty('--parallax-offset', `${offset}px`);
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Initial call
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
 
 
@@ -47,16 +60,15 @@ export default function PageContent() {
       {/* Section 1: Hero - Full Viewport */}
       <div 
         ref={heroRef}
-        className="relative min-h-screen flex items-center justify-center"
+        className="relative h-screen flex items-center justify-center"
         style={{
           backgroundColor: theme === 'dark' ? '#181A20' : '#FAF8F6',
         }}
       >
         <main 
-          className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-center py-32 px-16"
+          className="flex h-full w-full max-w-3xl flex-col items-center justify-center px-16"
           style={{
             backgroundColor: theme === 'dark' ? '#1F2229' : '#FFFFFF',
-            paddingTop: 0,
           }}
         >
           <div className="flex flex-col gap-12">
@@ -69,7 +81,7 @@ export default function PageContent() {
         {/* Scroll Button */}
         {showScrollArrow && (
           <ClientOnly>
-            <ScrollDownButton contentRef={headshotRef} onClick={handleScrollArrowClick} />
+            <ScrollDownButton contentRef={headshotRef} />
           </ClientOnly>
         )}
       </div>
@@ -83,13 +95,20 @@ export default function PageContent() {
         }}
       >
         <main 
-          className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-center py-32 px-16"
+          className="flex w-full max-w-3xl flex-col items-center justify-center py-32 px-16"
           style={{
             backgroundColor: theme === 'dark' ? '#1F2229' : '#FFFFFF',
-            paddingTop: 0,
           }}
         >
-          <div className="flex flex-col gap-6 text-left w-full">
+          <div 
+            ref={parallaxContentRef}
+            className="flex flex-col gap-6 text-left w-full"
+            style={{
+              transform: 'translateY(var(--parallax-offset, 0px))',
+              transition: 'transform 0.1s ease-out',
+              willChange: 'transform',
+            }}
+          >
             <div className="flex flex-col sm:flex-row gap-6 items-start w-full">
               <div className="flex justify-center w-full sm:w-auto">
                 <Image
@@ -135,6 +154,11 @@ export default function PageContent() {
                   </a>
                 </div>
               </div>
+            </div>
+
+            <div>
+              {/* Skills grid */}
+              <HeroGridHighlights />
             </div>
 
             <div>
@@ -367,11 +391,7 @@ export default function PageContent() {
       
           </div>
         </main>
-
-        {/* Scroll Button */}
-
       </div>
-
 
       {/* Section 3: Timeline - Full Viewport with Extra Spacing */}
       <div 
@@ -414,7 +434,322 @@ export default function PageContent() {
   );
 }
 
+/* ---------- HeroGridHighlights Component ---------- */
+/**
+ * HeroGridHighlights
+ * - Minimal 2x4 grid (responsive)
+ * - SVG icons (colored)
+ * - Matches the card styling of Languages and Tools sections
+ */
+function HeroGridHighlights() {
+  const { theme } = useTheme();
+  
+  const items = [
+    {
+      title: ".NET / IIS",
+      text: "Can build sites with .NET / IIS",
+      icon: IconServer,
+      iconColor: theme === 'dark' ? '#FCD34D' : '#D97706',
+      iconBg: theme === 'dark' ? 'rgba(252, 211, 77, 0.08)' : 'rgba(254, 243, 199, 0.8)',
+    },
+    {
+      title: "Stakeholders",
+      text: "Partner with stakeholders reliably",
+      icon: IconHandshake,
+      iconColor: theme === 'dark' ? '#7DD3FC' : '#0369A1',
+      iconBg: theme === 'dark' ? 'rgba(125, 211, 252, 0.08)' : 'rgba(224, 242, 254, 0.8)',
+    },
+    {
+      title: "Analytics",
+      text: "Use analytics & performance tools to drive decisions",
+      icon: IconChart,
+      iconColor: theme === 'dark' ? '#6EE7B7' : '#059669',
+      iconBg: theme === 'dark' ? 'rgba(110, 231, 183, 0.08)' : 'rgba(209, 250, 229, 0.8)',
+    },
+    {
+      title: "Accessibility",
+      text: "Improve accessibility and usability",
+      icon: IconAccessibility,
+      iconColor: theme === 'dark' ? '#C4B5FD' : '#7C3AED',
+      iconBg: theme === 'dark' ? 'rgba(196, 181, 253, 0.08)' : 'rgba(237, 233, 254, 0.8)',
+    },
+    {
+      title: "Workflow",
+      text: "Have modern workflows (Git, automation)",
+      icon: IconGitBranch,
+      iconColor: theme === 'dark' ? '#FDBA74' : '#EA580C',
+      iconBg: theme === 'dark' ? 'rgba(253, 186, 116, 0.08)' : 'rgba(255, 237, 213, 0.8)',
+    },
+    {
+      title: "Cloud",
+      text: "Have experience with cloud migrations",
+      icon: IconCloud,
+      iconColor: theme === 'dark' ? '#67E8F9' : '#0891B2',
+      iconBg: theme === 'dark' ? 'rgba(103, 232, 249, 0.08)' : 'rgba(207, 250, 254, 0.8)',
+    },
+    {
+      title: "Scientific UX",
+      text: "Comfortable interpreting complex / scientific content",
+      icon: IconAtom,
+      iconColor: theme === 'dark' ? '#FDA4AF' : '#E11D48',
+      iconBg: theme === 'dark' ? 'rgba(253, 164, 175, 0.08)' : 'rgba(254, 226, 226, 0.8)',
+    },
+    {
+      title: "Quality",
+      text: "Deliver clean, maintainable, reusable UI with strong standards",
+      icon: IconShieldCheck,
+      iconColor: theme === 'dark' ? '#A5B4FC' : '#4F46E5',
+      iconBg: theme === 'dark' ? 'rgba(165, 180, 252, 0.08)' : 'rgba(224, 231, 255, 0.8)',
+    },
+  ];
 
+  return (
+    <section className="w-full mt-28">
+      <div className="mx-auto max-w-6xl">
+        {/* Grid */}
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
+          {items.map((it) => {
+            const Icon = it.icon;
+            return (
+              <div
+                key={it.title}
+                className="p-4 rounded-lg transition-transform duration-150"
+                style={{
+                  backgroundColor: theme === 'dark' ? '#16181B' : '#FFFFFF',
+                  boxShadow: theme === 'dark' ? '0 6px 18px rgba(0,0,0,0.6)' : '0 6px 18px rgba(31,41,55,0.06)',
+                  border: theme === 'dark' ? '1px solid rgba(212,168,87,0.06)' : '1px solid rgba(15,23,42,0.04)'
+                }}
+                onMouseEnter={(e) => { 
+                  (e.currentTarget as HTMLElement).style.transform = 'translateY(-3px)'; 
+                  (e.currentTarget as HTMLElement).style.boxShadow = theme === 'dark' ? '0 6px 14px rgba(0,0,0,0.6)' : '0 6px 14px rgba(2,6,23,0.06)'; 
+                }}
+                onMouseLeave={(e) => { 
+                  (e.currentTarget as HTMLElement).style.transform = 'translateY(0)'; 
+                  (e.currentTarget as HTMLElement).style.boxShadow = theme === 'dark' ? '0 6px 18px rgba(0,0,0,0.6)' : '0 6px 18px rgba(31,41,55,0.06)'; 
+                }}
+              >
+                <div className="flex items-start gap-3">
+                  <div
+                    className="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl"
+                    style={{
+                      backgroundColor: it.iconBg,
+                      color: it.iconColor,
+                    }}
+                    aria-hidden="true"
+                  >
+                    <Icon className="h-5 w-5" />
+                  </div>
 
+                  <div className="min-w-0">
+                    <h3 
+                      className="truncate text-sm font-semibold"
+                      style={{ color: theme === 'dark' ? '#D4A857' : '#0F172A' }}
+                    >
+                      {it.title}
+                    </h3>
+                    <p 
+                      className="mt-1 text-sm leading-snug"
+                      style={{ color: theme === 'dark' ? '#B9C3D1' : '#374151' }}
+                    >
+                      {it.text}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- SVG Icons (inline, no deps) ---------- */
+/* All icons use currentColor so they inherit the accent color. */
+
+function IconServer({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="none" aria-hidden="true">
+      <path
+        d="M5 6.5C5 5.12 6.12 4 7.5 4h9C17.88 4 19 5.12 19 6.5v2c0 1.38-1.12 2.5-2.5 2.5h-9C6.12 11 5 9.88 5 8.5v-2Z"
+        stroke="currentColor"
+        strokeWidth="2"
+      />
+      <path
+        d="M5 15.5c0-1.38 1.12-2.5 2.5-2.5h9c1.38 0 2.5 1.12 2.5 2.5v2c0 1.38-1.12 2.5-2.5 2.5h-9C6.12 20 5 18.88 5 17.5v-2Z"
+        stroke="currentColor"
+        strokeWidth="2"
+      />
+      <path d="M8 8h.01M8 17h.01" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function IconHandshake({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="none" aria-hidden="true">
+      <path
+        d="M8.5 12.5 11 10c1-1 2.5-1 3.5 0l1 1"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      <path
+        d="M3.5 12 7 8.5c1.2-1.2 3.1-1.2 4.3 0l.7.7"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      <path
+        d="M20.5 12 17 8.5c-1.2-1.2-3.1-1.2-4.3 0l-.7.7"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      <path
+        d="M9.5 13.5l2 2c.8.8 2.2.8 3 0l2.5-2.5"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      <path
+        d="M6.5 14.5l2 2c.8.8 2.2.8 3 0"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function IconChart({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="none" aria-hidden="true">
+      <path d="M4 19V5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <path d="M4 19h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <path
+        d="M7 15l3-3 3 2 5-6"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path d="M18 8h.01" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function IconAccessibility({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="none" aria-hidden="true">
+      <path d="M12 4h.01" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
+      <path
+        d="M6 7.5c4 1.5 8 1.5 12 0"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      <path
+        d="M10 9.5 12 21m2-11.5L12 21"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      <path
+        d="M8 13.5h8"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function IconGitBranch({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="none" aria-hidden="true">
+      <path d="M6 6v12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <path d="M18 8v10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <path
+        d="M6 12c2.5 0 3.5-4 6-4s3.5 4 6 4"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      <circle cx="6" cy="6" r="2" stroke="currentColor" strokeWidth="2" />
+      <circle cx="6" cy="18" r="2" stroke="currentColor" strokeWidth="2" />
+      <circle cx="18" cy="8" r="2" stroke="currentColor" strokeWidth="2" />
+    </svg>
+  );
+}
+
+function IconCloud({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="none" aria-hidden="true">
+      <path
+        d="M8.5 18h8.2c2 0 3.8-1.6 3.8-3.6 0-1.8-1.4-3.2-3.1-3.5A5.7 5.7 0 0 0 6.7 9.7 3.6 3.6 0 0 0 8.5 18Z"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M12 11v7"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      <path
+        d="M9.5 15.5 12 18l2.5-2.5"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function IconAtom({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="none" aria-hidden="true">
+      <circle cx="12" cy="12" r="1.8" fill="currentColor" />
+      <path
+        d="M12 4c2.5 0 4.5 3.6 4.5 8s-2 8-4.5 8-4.5-3.6-4.5-8 2-8 4.5-8Z"
+        stroke="currentColor"
+        strokeWidth="2"
+      />
+      <path
+        d="M5.2 7.2c1.8-1.8 5.8-.3 8.8 2.7s4.5 7 2.7 8.8-5.8.3-8.8-2.7-4.5-7-2.7-8.8Z"
+        stroke="currentColor"
+        strokeWidth="2"
+      />
+      <path
+        d="M18.8 7.2c1.8 1.8.3 5.8-2.7 8.8s-7 4.5-8.8 2.7-.3-5.8 2.7-8.8 7-4.5 8.8-2.7Z"
+        stroke="currentColor"
+        strokeWidth="2"
+      />
+    </svg>
+  );
+}
+
+function IconShieldCheck({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="none" aria-hidden="true">
+      <path
+        d="M12 3 19 6v6c0 5-3 8.5-7 9.8C8 20.5 5 17 5 12V6l7-3Z"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="m9 12 2 2 4-5"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
 

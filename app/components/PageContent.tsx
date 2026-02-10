@@ -18,6 +18,8 @@ export default function PageContent() {
   const [showScrollArrow, setShowScrollArrow] = useState(true);
   const [contactSubject, setContactSubject] = useState('');
   const [contactBody, setContactBody] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
 
 
 
@@ -466,15 +468,43 @@ export default function PageContent() {
               color: theme === 'dark' ? '#B0B8C3' : '#666',
             }}
           >
-            Interested in working together? Send me a message directly.
+            Contact form powered by a serverless API route and transactional email service (no mailto).
           </p>
           
           <form 
             className="space-y-6"
-            onSubmit={(e) => {
+            onSubmit={async (e) => {
               e.preventDefault();
-              const mailtoLink = `mailto:ashinder@gmail.com?subject=${encodeURIComponent(contactSubject)}&body=${encodeURIComponent(contactBody)}`;
-              window.location.href = mailtoLink;
+              setIsSubmitting(true);
+              setSubmitMessage('');
+
+              try {
+                const response = await fetch('/api/contact', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({
+                    subject: contactSubject,
+                    body: contactBody,
+                  }),
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                  setSubmitMessage('Email sent successfully!');
+                  setContactSubject('');
+                  setContactBody('');
+                } else {
+                  setSubmitMessage(data.error || 'Failed to send email. Please try again.');
+                }
+              } catch (error) {
+                console.error('Form submission error:', error);
+                setSubmitMessage('An error occurred. Please try again.');
+              } finally {
+                setIsSubmitting(false);
+              }
             }}
           >
             <div>
@@ -530,16 +560,37 @@ export default function PageContent() {
             </div>
             
             <div className="text-center">
+              {submitMessage && (
+                <p 
+                  className="mb-4 text-sm"
+                  style={{
+                    color: submitMessage.includes('successfully') 
+                      ? '#10B981' 
+                      : '#EF4444',
+                  }}
+                >
+                  {submitMessage}
+                </p>
+              )}
               <button
                 type="submit"
-                className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                disabled={isSubmitting}
+                className="px-8 py-3 text-white font-semibold rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 style={{
-                  background: theme === 'dark' 
-                    ? 'linear-gradient(to right, #3B82F6, #8B5CF6)' 
-                    : 'linear-gradient(to right, #3B82F6, #8B5CF6)',
+                  backgroundColor: theme === 'dark' ? '#D4A857' : '#D4A857',
+                  border: 'none',
+                  boxShadow: theme === 'dark' ? '0 4px 14px rgba(212, 168, 87, 0.3)' : '0 4px 14px rgba(212, 168, 87, 0.2)',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = theme === 'dark' ? '#B8860B' : '#B8860B';
+                  e.currentTarget.style.boxShadow = theme === 'dark' ? '0 6px 20px rgba(212, 168, 87, 0.4)' : '0 6px 20px rgba(212, 168, 87, 0.3)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = theme === 'dark' ? '#D4A857' : '#D4A857';
+                  e.currentTarget.style.boxShadow = theme === 'dark' ? '0 4px 14px rgba(212, 168, 87, 0.3)' : '0 4px 14px rgba(212, 168, 87, 0.2)';
                 }}
               >
-                Send Email
+                {isSubmitting ? 'Sending...' : 'Send Email'}
               </button>
             </div>
           </form>

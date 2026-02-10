@@ -140,7 +140,7 @@ export default function PageContent() {
                 >
                   This site was designed and built by me using a modern full-stack workflow: React & Next.js, Tailwind CSS, and HTML/CSS/JavaScript, developed in Visual Studio with GitHub Copilot, versioned with Git, deployed on Vercel, and supported by a design pipeline using Photoshop - custom-built from the ground up with a focus on performance, accessibility and production-ready code.
                 </p>
-                <div className="flex gap-4 mt-2 w-full">
+                <div className="flex gap-4 mt-4 w-full">
                   <a
                     href="https://github.com/asethii"
                     target="_blank"

@@ -36,6 +36,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Hi! Glad you're looking at my source code. Now we are speaking the same language! */}
+      </head>
       <body
         className={`${montserrat.variable} ${aboreto.variable} ${fraunces.variable} antialiased`}
         style={{ fontFamily: 'var(--font-montserrat)' }}

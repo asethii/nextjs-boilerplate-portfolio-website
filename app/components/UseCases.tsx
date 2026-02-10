@@ -82,15 +82,24 @@ export default function UseCases() {
           </div>
           <div
             style={{
-              fontSize: '24px',
-              color: theme === 'dark' ? '#D4A857' : '#292C34',
               transition: 'transform 0.3s ease',
               transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
               marginLeft: '16px',
               flexShrink: 0,
             }}
           >
-            ▼
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke={theme === 'dark' ? '#D4A857' : '#292C34'}
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
           </div>
         </button>
 
@@ -623,7 +632,7 @@ export default function UseCases() {
       {/* Case Study 3 */}
       <CaseStudyCard
         caseNum={3}
-        title="Automated Partner Website Generator"
+        title="Automated Partner Website Generator & CMS"
         subtitle="Dynamic, Scalable .NET System Serving Thousands of Dealers"
       >
         <Section title="The Problem">

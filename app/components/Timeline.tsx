@@ -11,40 +11,40 @@ interface TimelineEvent {
  {/* title: 'Front-End Developer / UX Designer', */}
 const events: TimelineEvent[] = [
   {
-    year: '2013-2025',   
-    title: 'Intermediate Web Developer / Front-end Lead',
+    year: '2002-2010',
+    title: 'Web Designer and Junior Developer',
     description: [
-      'Began transitioning from design-focused work into engineering leadership and full-stack development',
-      'Developed custom User Experiences from the ground up; lead generation and management systems, e-commerce platforms and marketing sites using C#/.NET, HTML/CSS/JS, PHP, Shopify and WordPress',
-      'Established strong UI/UX foundations, SEO practices, conversion strategy, accessibility standards and data-backed decision making',  
-      'Led multiple projects across various tech stacks, collaborating closely with cross-functional teams to deliver high-quality digital experiences',
-      'SEO optimization and performance improvements resulting in increased organic traffic and user engagement',
-      'Implemented accessibility best practices to ensure compliance with WCAG standards',
-      'Mentored junior developers and designers, fostering a collaborative and growth-oriented team environment',
-      'Leveraged AI tools to enhance development workflows and improve content quality'
+      'I began my career as a web designer, focusing on creating visuals for user-friendly websites.',
+      'Collaborated with clients to understand their needs and translate them into effective design solutions.',
+      'Gained experience in HTML, CSS and basic JavaScript to implement designs into functional web pages.',
+      'Assisted in the development and maintenance of websites, ensuring they were up-to-date and aligned with client goals.',
+      'Learned the fundamentals of web development, including best practices for usability, accessibility, and SEO.'
     ],
   },
   {
     year: '2010-2013',
     title: 'Front-end Design and Development',
     description: [
-      'Designed and maintained websites and applications supporting various government agencies using SharePoint.',
+      'Designed and maintained websites and applications supporting various government agencies using SharePoint and Drupal.',
       'Lead front-end development efforts for multiple projects, implementing bug-free responsive design patterns and cross-browser compatibility.',
       'Developed scalable User Interfaces with a focus on usability, accessibility, and performance optimization.',
       'Collaborated with back-end developers to integrate front-end components with server-side logic.',
       'Conducted user research and usability testing to inform design decisions and improve user experience.',
-      'Created wireframes, prototypes, and visual designs to effectively communicate design concepts to stakeholders.'
+      'Created wireframes, high fidelity prototypes and visual designs to effectively communicate design concepts to stakeholders.'
     ],
   },
   {
-    year: '2002-2010',
-    title: 'Web Designer / Junior Developer',
+    year: '2013-2025',   
+    title: 'Senior Web Developer / Front-end Lead',
     description: [
-      'Began my career as a web designer, focusing on creating visually appealing and user-friendly websites.',
-      'Collaborated with clients to understand their needs and translate them into effective design solutions.',
-      'Gained experience in HTML, CSS, and basic JavaScript to implement designs into functional web pages.',
-      'Assisted in the development and maintenance of websites, ensuring they were up-to-date and aligned with client goals.',
-      'Learned the fundamentals of web development, including best practices for usability, accessibility, and SEO.'
+      'Began transitioning from design-focused work into engineering leadership and full-stack development',
+      'Developed custom User Experiences from the ground up; lead generation and content management systems, e-commerce platforms and marketing sites using C#/.NET, HTML/CSS/JS, PHP, Shopify and WordPress',
+      'Established strong UI/UX foundations, SEO practices, conversion strategy, accessibility standards and data-backed decision making',  
+      'Led multiple projects across various tech stacks, collaborating closely with cross-functional teams to deliver high-quality digital experiences',
+      'SEO optimization and performance improvements resulting in increased organic traffic and user engagement',
+      'Implemented accessibility best practices to ensure compliance with WCAG standards',
+      'Mentored junior developers and designers, fostering a collaborative and growth-oriented team environment',
+      'Leveraged AI tools to enhance development workflows and improve content quality'
     ],
   },
 ];
@@ -94,8 +94,8 @@ export default function Timeline() {
             className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full"
             style={{
               background: theme === 'dark' 
-                ? 'linear-gradient(to bottom, #D4A857, #B8860B)' 
-                : 'linear-gradient(to bottom, #D97706, #92400E)'
+                ? '#D4A857' 
+                : '#92400E'
             }}
           />
 
@@ -114,10 +114,9 @@ export default function Timeline() {
                 {/* Center dot - absolutely positioned on the line */}
                 <div className="absolute left-1/2 transform -translate-x-1/2 top-0">
                   <div 
-                    className="w-6 h-6 rounded-full border-4 shadow-lg"
+                    className="w-4 h-4 rounded-full shadow-lg"
                     style={{
-                      backgroundColor: theme === 'dark' ? '#D4A857' : '#D97706',
-                      borderColor: theme === 'dark' ? '#000000' : '#FFFFFF'
+                      backgroundColor: theme === 'dark' ? '#D4A857' : '#92400E'
                     }}
                   />
                 </div>
@@ -135,6 +134,7 @@ export default function Timeline() {
                         </span>
                         <h3 className="text-2xl font-bold mt-2" style={{
                           color: theme === 'dark' ? '#FFFFFF' : '#000000',
+                          paddingBottom: '20px'
                         }}>
                           {event.title}
                         </h3>
@@ -187,6 +187,7 @@ export default function Timeline() {
                         </span>
                         <h3 className="text-2xl font-bold mt-2" style={{
                           color: theme === 'dark' ? '#FFFFFF' : '#000000',
+                          paddingBottom: '20px'
                         }}>
                           {event.title}
                         </h3>
@@ -245,6 +246,7 @@ export default function Timeline() {
                       </span>
                       <h3 className="text-xl font-bold mt-2 text-left" style={{
                         color: theme === 'dark' ? '#FFFFFF' : '#000000',
+                        paddingBottom: '20px'
                       }}>
                         {event.title}
                       </h3>
@@ -281,6 +283,22 @@ export default function Timeline() {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Down arrow at the end of the vertical line */}
+          <div className="absolute left-1/2 transform -translate-x-1/2" style={{ bottom: '-10px' }}>
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke={theme === 'dark' ? '#D4A857' : '#92400E'}
+              strokeWidth="4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
           </div>
         </div>
 

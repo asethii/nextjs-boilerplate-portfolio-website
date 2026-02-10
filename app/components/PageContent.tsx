@@ -15,11 +15,15 @@ export default function PageContent() {
   const heroRef = useRef<HTMLDivElement>(null);
   const headshotRef = useRef<HTMLDivElement>(null);
   const parallaxContentRef = useRef<HTMLDivElement>(null);
+  const languagesCardRef = useRef<HTMLDivElement>(null);
+  const toolsCardRef = useRef<HTMLDivElement>(null);
   const [showScrollArrow, setShowScrollArrow] = useState(true);
   const [contactSubject, setContactSubject] = useState('');
   const [contactBody, setContactBody] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
+  const [showLanguagesCard, setShowLanguagesCard] = useState(false);
+  const [showToolsCard, setShowToolsCard] = useState(false);
 
 
 
@@ -50,6 +54,30 @@ export default function PageContent() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll(); // Initial call
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Intersection observer for skill card animations
+  useEffect(() => {
+    const observer = new window.IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.target === languagesCardRef.current && entry.isIntersecting) {
+            setShowLanguagesCard(true);
+            observer.unobserve(entry.target);
+          }
+          if (entry.target === toolsCardRef.current && entry.isIntersecting) {
+            setShowToolsCard(true);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    
+    if (languagesCardRef.current) observer.observe(languagesCardRef.current);
+    if (toolsCardRef.current) observer.observe(toolsCardRef.current);
+    
+    return () => observer.disconnect();
   }, []);
 
 
@@ -182,7 +210,8 @@ export default function PageContent() {
               <div className="mt-6 grid gap-6 grid-cols-1">
                 {/* Languages Card */}
                 <div
-                  className="card p-6 rounded-lg"
+                  ref={languagesCardRef}
+                  className={`card p-4 rounded-lg ${showLanguagesCard ? 'animate-slide-in-left' : 'opacity-0'}`}
                   style={{
                     backgroundColor: theme === 'dark' ? '#16181B' : '#FFFFFF',
                     boxShadow: theme === 'dark' ? '0 6px 18px rgba(0,0,0,0.6)' : '0 6px 18px rgba(31,41,55,0.06)',
@@ -216,11 +245,12 @@ export default function PageContent() {
                     {['HTML/CSS', 'JavaScript','TypeScript','SQL','C#/.NET','PHP'].map((lang) => (
                       <span
                         key={lang}
-                        className="inline-flex items-center mr-3 mb-3 px-4 py-2 rounded-full text-sm transition-transform duration-150"
+                        className="inline-flex items-center mr-3 mb-3 px-4 py-2 rounded-full transition-transform duration-150"
                         style={{
                           backgroundColor: theme === 'dark' ? 'rgba(212,168,87,0.08)' : '#EFF6FF',
                           color: theme === 'dark' ? '#D4A857' : '#1E3A8A',
                           cursor: 'default',
+                          fontSize: '0.6rem',
                         }}
                         onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-3px)'; (e.currentTarget as HTMLElement).style.boxShadow = theme === 'dark' ? '0 6px 14px rgba(0,0,0,0.6)' : '0 6px 14px rgba(2,6,23,0.06)'; }}
                         onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = 'translateY(0)'; (e.currentTarget as HTMLElement).style.boxShadow = 'none'; }}
@@ -233,7 +263,8 @@ export default function PageContent() {
 
                 {/* Tools & Technologies Card */}
                 <div
-                  className="card p-6 rounded-lg"
+                  ref={toolsCardRef}
+                  className={`card p-4 rounded-lg ${showToolsCard ? 'animate-slide-in-right' : 'opacity-0'}`}
                   style={{
                     backgroundColor: theme === 'dark' ? '#16181B' : '#FFFFFF',
                     boxShadow: theme === 'dark' ? '0 6px 18px rgba(0,0,0,0.6)' : '0 6px 18px rgba(31,41,55,0.06)',
@@ -273,11 +304,12 @@ export default function PageContent() {
                     {['Figma', 'PhotoShop/Illustrator','Adobe Animate','GitHub Copilot','Vercel','React/Next.js','Node.js','Git','Docker','Tailwind CSS','Bootstrap','REST APIs','GraphQL','Google Analytics','Google Search Console','Google Tag Manager','AWS Cloud Migration','IIS','Visual Studio','SQL Server'].map((tool) => (
                       <span
                         key={tool}
-                        className="inline-flex items-center mr-3 mb-3 px-4 py-2 rounded-full text-sm transition-transform duration-150"
+                        className="inline-flex items-center mr-3 mb-3 px-4 py-2 rounded-full transition-transform duration-150"
                         style={{
                           backgroundColor: theme === 'dark' ? 'rgba(212,168,87,0.06)' : '#FEF3C7',
                           color: theme === 'dark' ? '#D4A857' : '#92400E',
                           cursor: 'default',
+                          fontSize: '0.6rem',
                         }}
                         onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-3px)'; (e.currentTarget as HTMLElement).style.boxShadow = theme === 'dark' ? '0 6px 14px rgba(0,0,0,0.6)' : '0 6px 14px rgba(2,6,23,0.06)'; }}
                         onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = 'translateY(0)'; (e.currentTarget as HTMLElement).style.boxShadow = 'none'; }}
@@ -290,7 +322,7 @@ export default function PageContent() {
 
                 {/* Practices Card */}
                 <div
-                  className="card p-6 rounded-lg"
+                  className="card p-4 rounded-lg"
                   style={{
                     backgroundColor: theme === 'dark' ? '#16181B' : '#FFFFFF',
                     boxShadow: theme === 'dark' ? '0 6px 18px rgba(0,0,0,0.6)' : '0 6px 18px rgba(31,41,55,0.06)',
@@ -321,11 +353,12 @@ export default function PageContent() {
                     {['Accessibility (508 / WCAG)', 'UX/UI design systems', 'CMS governance', 'Stakeholder requirements gathering'].map((practice) => (
                       <span
                         key={practice}
-                        className="inline-flex items-center mr-3 mb-3 px-4 py-2 rounded-full text-sm transition-transform duration-150"
+                        className="inline-flex items-center mr-3 mb-3 px-4 py-2 rounded-full transition-transform duration-150"
                         style={{
                           backgroundColor: theme === 'dark' ? 'rgba(212,168,87,0.06)' : '#FEF3C7',
                           color: theme === 'dark' ? '#D4A857' : '#92400E',
                           cursor: 'default',
+                          fontSize: '0.6rem',
                         }}
                         onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-3px)'; (e.currentTarget as HTMLElement).style.boxShadow = theme === 'dark' ? '0 6px 14px rgba(0,0,0,0.6)' : '0 6px 14px rgba(2,6,23,0.06)'; }}
                         onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = 'translateY(0)'; (e.currentTarget as HTMLElement).style.boxShadow = 'none'; }}
@@ -335,7 +368,7 @@ export default function PageContent() {
                     ))}
                   </div>
                 </div>            
-                <h3 className="text-lg font-semibold mt-8" style={{ color: theme === 'dark' ? '#D4A857' : '#0F172A' }}>About Me</h3>
+                <h2 className="text-4xl font-bold text-center mb-16 mt-16" style={{ color: theme === 'dark' ? '#D4A857' : '#000000' }}>About Me</h2>
 
               </div>
             </div>
@@ -349,7 +382,7 @@ export default function PageContent() {
           color: theme === 'dark' ? '#D4A857' : '#000000',
         }}>Delivering fast, intuitive, reliable experiences that make the web better - for users, developers and businesses.</p>
             
-            <h3 className="text-lg font-semibold mt-8 text-center" style={{ color: theme === 'dark' ? '#D4A857' : '#0F172A' }}>Live Examples</h3>
+            <h2 className="text-4xl font-bold text-center mb-16" style={{ color: theme === 'dark' ? '#D4A857' : '#000000' }}>Live Examples</h2>
             <ClientOnly>
               <ImageCarousel />
             </ClientOnly>
@@ -577,17 +610,15 @@ export default function PageContent() {
                 disabled={isSubmitting}
                 className="px-8 py-3 text-white font-semibold rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 style={{
-                  backgroundColor: theme === 'dark' ? '#D4A857' : '#D4A857',
+                  backgroundColor: theme === 'dark' ? '#D4A857' : '#292C34',
                   border: 'none',
-                  boxShadow: theme === 'dark' ? '0 4px 14px rgba(212, 168, 87, 0.3)' : '0 4px 14px rgba(212, 168, 87, 0.2)',
+                  boxShadow: 'none',
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = theme === 'dark' ? '#B8860B' : '#B8860B';
-                  e.currentTarget.style.boxShadow = theme === 'dark' ? '0 6px 20px rgba(212, 168, 87, 0.4)' : '0 6px 20px rgba(212, 168, 87, 0.3)';
+                  e.currentTarget.style.backgroundColor = theme === 'dark' ? '#C99A25' : '#1a1d23';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = theme === 'dark' ? '#D4A857' : '#D4A857';
-                  e.currentTarget.style.boxShadow = theme === 'dark' ? '0 4px 14px rgba(212, 168, 87, 0.3)' : '0 4px 14px rgba(212, 168, 87, 0.2)';
+                  e.currentTarget.style.backgroundColor = theme === 'dark' ? '#D4A857' : '#292C34';
                 }}
               >
                 {isSubmitting ? 'Sending...' : 'Send Email'}
@@ -609,6 +640,8 @@ export default function PageContent() {
  */
 function HeroGridHighlights() {
   const { theme } = useTheme();
+  const [visibleItems, setVisibleItems] = useState<Set<number>>(new Set());
+  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
   
   const items = [
     {
@@ -669,17 +702,44 @@ function HeroGridHighlights() {
     },
   ];
 
+  useEffect(() => {
+    const observer = new window.IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const index = itemRefs.current.indexOf(entry.target as HTMLDivElement);
+          if (index !== -1 && entry.isIntersecting) {
+            setVisibleItems((prev) => new Set(prev).add(index));
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    itemRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section className="w-full mt-28">
       <div className="mx-auto max-w-6xl">
         {/* Grid */}
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
-          {items.map((it) => {
+          {items.map((it, index) => {
             const Icon = it.icon;
+            const isEvenIndex = index % 2 === 0;
+            const isVisible = visibleItems.has(index);
+            const animationClass = isVisible 
+              ? (isEvenIndex ? 'animate-slide-in-left' : 'animate-slide-in-right')
+              : 'opacity-0';
             return (
               <div
                 key={it.title}
-                className="card p-4 rounded-lg transition-transform duration-150"
+                ref={(el) => { itemRefs.current[index] = el; }}
+                className={`card p-4 rounded-lg transition-transform duration-150 ${animationClass}`}
                 style={{
                   backgroundColor: theme === 'dark' ? '#16181B' : '#FFFFFF',
                   boxShadow: theme === 'dark' ? '0 6px 18px rgba(0,0,0,0.6)' : '0 6px 18px rgba(31,41,55,0.06)',

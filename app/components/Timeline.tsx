@@ -303,7 +303,7 @@ export default function Timeline() {
             <ul className="list-disc pl-5 space-y-2 text-left text-sm" style={{
               color: theme === 'dark' ? '#FFFFFF' : '#4B5563',
             }}>
-              <li>I am looking for a engineering or technical leadership role where I can leverage my development experience to help rapidly prototype and itterate on UI/UX focused solutions.</li>
+              <li>I am looking for an engineering or technical leadership role where I can leverage my development experience to help rapidly prototype and itterate on UI/UX focused solutions.</li>
               <li>Create tools using agentic AI-driven systems that help optmize workflows between designers and engineers, and help catch and mitigate quality assurance and compliance related issues before they occur.</li>
               <li>Build systems that help catch and mitigate quality assurance and compliance related issues before they occur.</li>
             </ul>

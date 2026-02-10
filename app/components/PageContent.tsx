@@ -336,15 +336,16 @@ export default function PageContent() {
               </div>
             </div>
             <p>
-              For 15+ years, I have been designing and engineering modern web solutions across the <strong style={{ color: theme === 'dark' ? '#D4A857' : '#0F172A' }}>full stack</strong> using React, C#/.NET, HTML/CSS, JavaScript and SQL. My work blends <strong style={{ color: theme === 'dark' ? '#D4A857' : '#0F172A' }}>engineering leadership, management, UI/UX intuition, accessibility standards, and AI-driven automation</strong> to create systems that scale.
+              For 15+ years, I have been designing and engineering modern web solutions across the <strong style={{ color: theme === 'dark' ? '#D4A857' : '#0F172A' }}>full stack</strong> using React, C#/.NET, HTML/CSS, JavaScript and SQL. My work blends <strong style={{ color: theme === 'dark' ? '#D4A857' : '#0F172A' }}>engineering leadership, management, UI/UX intuition, accessibility standards and AI-driven automation</strong> to create systems that scale.
             </p>
-            <p>I <strong style={{ color: theme === 'dark' ? '#D4A857' : '#0F172A' }}>lead projects</strong> end-to-end - from <strong style={{ color: theme === 'dark' ? '#D4A857' : '#0F172A' }}>concept and prototyping to architecture, development, testing and launch</strong>. I collaborate closely with designers, product, marketing, legal, QA, and executive teams to drive clarity, reduce risk, and deliver outcomes.</p>
+            <p>I <strong style={{ color: theme === 'dark' ? '#D4A857' : '#0F172A' }}>lead projects</strong> end-to-end - from <strong style={{ color: theme === 'dark' ? '#D4A857' : '#0F172A' }}>concept and prototyping to architecture, development, testing and launch</strong>. I collaborate closely with designers, product, marketing, legal, QA, and executive teams to drive clarity, reduce risk and deliver outcomes.</p>
             {/*<p>Whether I'm rethinking an e-commerce-driven lead funnel, automating partner website generation for thousands of users, or building AI tools to improve accessibility and content quality, I focus on one thing:</p>*/}
            
-              <h2 className='text-xl font-bold text-center mb-16' style={{
+              <p className='text-xl font-bold text-center mb-16' style={{
           color: theme === 'dark' ? '#D4A857' : '#000000',
-        }}>Delivering fast, intuitive, reliable experiences that make the web better - for users, developers and businesses.</h2>
+        }}>Delivering fast, intuitive, reliable experiences that make the web better - for users, developers and businesses.</p>
             
+            <h3 className="text-lg font-semibold mt-8 text-center" style={{ color: theme === 'dark' ? '#D4A857' : '#0F172A' }}>Live Examples</h3>
             <ClientOnly>
               <ImageCarousel />
             </ClientOnly>
@@ -485,7 +486,7 @@ function HeroGridHighlights() {
     },
     {
       title: "Workflow",
-      text: "Have modern workflows (Git, automation)",
+      text: "Have modern workflows (Git, AI assisted automation)",
       icon: IconGitBranch,
       iconColor: theme === 'dark' ? '#FDBA74' : '#EA580C',
       iconBg: theme === 'dark' ? 'rgba(253, 186, 116, 0.08)' : 'rgba(255, 237, 213, 0.8)',

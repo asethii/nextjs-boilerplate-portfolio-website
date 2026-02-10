@@ -139,7 +139,7 @@ export default function Timeline() {
                           {event.title}
                         </h3>
                         <div
-                          className="card p-6 rounded-lg"
+                          className="card p-4 rounded-lg"
                           style={{
                             backgroundColor: theme === 'dark' ? '#33363b' : '#FFFFFF',
                             boxShadow: theme === 'dark' ? '0 6px 18px rgba(0,0,0,0.6)' : '0 6px 18px rgba(31,41,55,0.06)',
@@ -160,14 +160,16 @@ export default function Timeline() {
                                 ))}
                               </ul>
                               {event.description.length > 2 && !showAllBullets[index] && (
-                                <button
-                                  className="text-xs underline cursor-pointer mt-1"
-                                  onClick={() => handleShowMore(index)}
-                                  style={{ background: 'none', border: 'none', padding: 0, color: theme === 'dark' ? '#D4A857' : '#92400E' }}
-                                  type="button"
-                                >
-                                  Show More
-                                </button>
+                                <div style={{ display: 'flex', justifyContent: 'center', width: '100%', marginTop: '0.5rem' }}>
+                                  <button
+                                    className="text-xs underline cursor-pointer"
+                                    onClick={() => handleShowMore(index)}
+                                    style={{ background: 'none', border: 'none', padding: 0, color: theme === 'dark' ? '#D4A857' : '#92400E' }}
+                                    type="button"
+                                  >
+                                    Show More
+                                  </button>
+                                </div>
                               )}
                             </>
                           )}
@@ -192,7 +194,7 @@ export default function Timeline() {
                           {event.title}
                         </h3>
                         <div
-                          className="card p-6 rounded-lg mt-2"
+                          className="card p-4 rounded-lg mt-2"
                           style={{
                             backgroundColor: theme === 'dark' ? '#33363b' : '#FFFFFF',
                             boxShadow: theme === 'dark' ? '0 6px 18px rgba(0,0,0,0.6)' : '0 6px 18px rgba(31,41,55,0.06)',
@@ -213,14 +215,16 @@ export default function Timeline() {
                                 ))}
                               </ul>
                               {event.description.length > 2 && !showAllBullets[index] && (
-                                <button
-                                  className="text-xs underline cursor-pointer mt-1"
-                                  onClick={() => handleShowMore(index)}
-                                  style={{ background: 'none', border: 'none', padding: 0, color: theme === 'dark' ? '#D4A857' : '#92400E' }}
-                                  type="button"
-                                >
-                                  Show More
-                                </button>
+                                <div style={{ display: 'flex', justifyContent: 'center', width: '100%', marginTop: '0.5rem' }}>
+                                  <button
+                                    className="text-xs underline cursor-pointer"
+                                    onClick={() => handleShowMore(index)}
+                                    style={{ background: 'none', border: 'none', padding: 0, color: theme === 'dark' ? '#D4A857' : '#92400E' }}
+                                    type="button"
+                                  >
+                                    Show More
+                                  </button>
+                                </div>
                               )}
                             </>
                           )}
@@ -266,14 +270,16 @@ export default function Timeline() {
                               ))}
                             </ul>
                             {event.description.length > 2 && !showAllBullets[index] && (
-                              <button
-                                className="text-xs underline cursor-pointer mt-1"
-                                onClick={() => handleShowMore(index)}
-                                style={{ background: 'none', border: 'none', padding: 0, color: theme === 'dark' ? '#D4A857' : '#92400E' }}
-                                type="button"
-                              >
-                                Show More
-                              </button>
+                              <div style={{ display: 'flex', justifyContent: 'center', width: '100%', marginTop: '0.5rem' }}>
+                                <button
+                                  className="text-xs underline cursor-pointer"
+                                  onClick={() => handleShowMore(index)}
+                                  style={{ background: 'none', border: 'none', padding: 0, color: theme === 'dark' ? '#D4A857' : '#92400E' }}
+                                  type="button"
+                                >
+                                  Show More
+                                </button>
+                              </div>
                             )}
                           </>
                         )}

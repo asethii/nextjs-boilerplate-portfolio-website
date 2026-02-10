@@ -362,7 +362,7 @@ export default function ImageCarousel() {
           onMouseLeave={handleMouseLeave}
         >
           <div
-            className="p-6 rounded-lg w-full sm:w-full transition-opacity duration-500 mx-auto"
+            className="card p-6 rounded-lg w-full sm:w-full transition-opacity duration-500 mx-auto"
             style={{
               backgroundColor: theme === 'dark' ? '#16181B' : '#FFFFFF',
               boxShadow: theme === 'dark' ? '0 6px 18px rgba(0,0,0,0.6)' : '0 6px 18px rgba(31,41,55,0.06)',

@@ -66,12 +66,12 @@ export default function PageContent() {
         }}
       >
         <main 
-          className="flex h-full w-full max-w-3xl flex-col items-center justify-center px-16"
+          className="flex h-full w-full max-w-3xl flex-col items-center justify-center px-16 pt-0 sm:pt-auto"
           style={{
             backgroundColor: theme === 'dark' ? '#1F2229' : '#FFFFFF',
           }}
         >
-          <div className="flex flex-col gap-12">
+          <div className="flex flex-col gap-12 -mt-20 sm:mt-0">
             <ClientOnly>
               <Logo />
             </ClientOnly>
@@ -178,7 +178,7 @@ export default function PageContent() {
               <div className="mt-6 grid gap-6 grid-cols-1">
                 {/* Languages Card */}
                 <div
-                  className="p-6 rounded-lg"
+                  className="card p-6 rounded-lg"
                   style={{
                     backgroundColor: theme === 'dark' ? '#16181B' : '#FFFFFF',
                     boxShadow: theme === 'dark' ? '0 6px 18px rgba(0,0,0,0.6)' : '0 6px 18px rgba(31,41,55,0.06)',
@@ -229,7 +229,7 @@ export default function PageContent() {
 
                 {/* Tools & Technologies Card */}
                 <div
-                  className="p-6 rounded-lg"
+                  className="card p-6 rounded-lg"
                   style={{
                     backgroundColor: theme === 'dark' ? '#16181B' : '#FFFFFF',
                     boxShadow: theme === 'dark' ? '0 6px 18px rgba(0,0,0,0.6)' : '0 6px 18px rgba(31,41,55,0.06)',
@@ -286,7 +286,7 @@ export default function PageContent() {
 
                 {/* Practices Card */}
                 <div
-                  className="p-6 rounded-lg"
+                  className="card p-6 rounded-lg"
                   style={{
                     backgroundColor: theme === 'dark' ? '#16181B' : '#FFFFFF',
                     boxShadow: theme === 'dark' ? '0 6px 18px rgba(0,0,0,0.6)' : '0 6px 18px rgba(31,41,55,0.06)',
@@ -330,15 +330,16 @@ export default function PageContent() {
                       </span>
                     ))}
                   </div>
-                </div>
+                </div>            
+                <h3 className="text-lg font-semibold mt-8" style={{ color: theme === 'dark' ? '#D4A857' : '#0F172A' }}>About Me</h3>
+
               </div>
             </div>
-            
             <p>
-              For 15+ years, I have been designing and engineering modern web solutions across the full stack using React, C#/.NET, HTML/CSS, JavaScript and SQL. My work blends engineering leadership, management, UI/UX intuition, accessibility standards, and AI-driven automation to create systems that scale.
+              For 15+ years, I have been designing and engineering modern web solutions across the <strong style={{ color: theme === 'dark' ? '#D4A857' : '#0F172A' }}>full stack</strong> using React, C#/.NET, HTML/CSS, JavaScript and SQL. My work blends <strong style={{ color: theme === 'dark' ? '#D4A857' : '#0F172A' }}>engineering leadership, management, UI/UX intuition, accessibility standards, and AI-driven automation</strong> to create systems that scale.
             </p>
-            <p>I lead projects end-to-end - from concept and prototyping to architecture, development, testing, and launch. I collaborate closely with designers, product, marketing, legal, QA, and executive teams to drive clarity, reduce risk, and deliver outcomes.</p>
-            <p>Whether I'm rethinking an e-commerce-driven lead funnel, automating partner website generation for thousands of users, or building AI tools to improve accessibility and content quality, I focus on one thing:</p>
+            <p>I <strong style={{ color: theme === 'dark' ? '#D4A857' : '#0F172A' }}>lead projects</strong> end-to-end - from <strong style={{ color: theme === 'dark' ? '#D4A857' : '#0F172A' }}>concept and prototyping to architecture, development, testing and launch</strong>. I collaborate closely with designers, product, marketing, legal, QA, and executive teams to drive clarity, reduce risk, and deliver outcomes.</p>
+            {/*<p>Whether I'm rethinking an e-commerce-driven lead funnel, automating partner website generation for thousands of users, or building AI tools to improve accessibility and content quality, I focus on one thing:</p>*/}
            
               <h2 className='text-xl font-bold text-center mb-16' style={{
           color: theme === 'dark' ? '#D4A857' : '#000000',
@@ -353,7 +354,7 @@ export default function PageContent() {
       {/* Enterprise & Government Web Experience Section */}
       <div className="w-full flex justify-center pt-8 pb-8">
         <section
-          className="w-full max-w-4xl px-4 p-6 rounded-lg"
+          className="card w-full max-w-4xl px-4 p-6 rounded-lg"
           style={{
             backgroundColor: theme === 'dark' ? '#16181B' : '#FFFFFF',
             boxShadow: theme === 'dark' ? '0 6px 18px rgba(0,0,0,0.6)' : '0 6px 18px rgba(31,41,55,0.06)',
@@ -378,7 +379,7 @@ export default function PageContent() {
       {/* Cloud Migration Experience Callout */}
       <div className="w-full flex justify-center pb-8">
         <section
-          className="w-full max-w-4xl px-4 p-6 rounded-lg"
+          className="card w-full max-w-4xl px-4 p-6 rounded-lg"
           style={{
             backgroundColor: theme === 'dark' ? '#16181B' : '#FFFFFF',
             boxShadow: theme === 'dark' ? '0 6px 18px rgba(0,0,0,0.6)' : '0 6px 18px rgba(31,41,55,0.06)',
@@ -411,7 +412,7 @@ export default function PageContent() {
         }}
       >
         <main 
-          className="w-full max-w-4xl px-4"
+          className="w-full max-w-3xl px-4"
           style={{
             backgroundColor: theme === 'dark' ? '#181A20' : '#FAF8F6',
           }}
@@ -522,7 +523,7 @@ function HeroGridHighlights() {
             return (
               <div
                 key={it.title}
-                className="p-4 rounded-lg transition-transform duration-150"
+                className="card p-4 rounded-lg transition-transform duration-150"
                 style={{
                   backgroundColor: theme === 'dark' ? '#16181B' : '#FFFFFF',
                   boxShadow: theme === 'dark' ? '0 6px 18px rgba(0,0,0,0.6)' : '0 6px 18px rgba(31,41,55,0.06)',
@@ -551,7 +552,7 @@ function HeroGridHighlights() {
 
                   <div className="min-w-0">
                     <h3 
-                      className="truncate text-sm font-semibold"
+                      className="truncate text-md font-semibold"
                       style={{ color: theme === 'dark' ? '#D4A857' : '#0F172A' }}
                     >
                       {it.title}

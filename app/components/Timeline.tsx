@@ -8,11 +8,11 @@ interface TimelineEvent {
   title: string;
   description: string | string[];
 }
-
+ {/* title: 'Front-End Developer / UX Designer', */}
 const events: TimelineEvent[] = [
   {
-    year: '2013-2025',
-    title: 'Front-End Developer / UX Designer',
+    year: '2013-2025',   
+    title: 'Intermediate Web Developer / Front-end Lead',
     description: [
       'Began transitioning from design-focused work into engineering leadership and full-stack development',
       'Developed custom User Experiences from the ground up; lead generation and management systems, e-commerce platforms and marketing sites using C#/.NET, HTML/CSS/JS, PHP, Shopify and WordPress',
@@ -81,7 +81,7 @@ export default function Timeline() {
 
   return (
     <section className="py-20 px-4">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-3xl mx-auto">
         <h2 className="text-4xl font-bold text-center mb-16" style={{
           color: theme === 'dark' ? '#D4A857' : '#000000',
         }}>
@@ -139,7 +139,7 @@ export default function Timeline() {
                           {event.title}
                         </h3>
                         <div
-                          className="p-6 rounded-lg"
+                          className="card p-6 rounded-lg"
                           style={{
                             backgroundColor: theme === 'dark' ? '#33363b' : '#FFFFFF',
                             boxShadow: theme === 'dark' ? '0 6px 18px rgba(0,0,0,0.6)' : '0 6px 18px rgba(31,41,55,0.06)',
@@ -151,7 +151,7 @@ export default function Timeline() {
                             <p>{event.description}</p>
                           ) : (
                             <>
-                              <ul className="list-disc pl-5 space-y-1 text-left" style={{ fontSize: '12px' }}>
+                              <ul className="list-disc pl-5 space-y-1 text-left text-sm">
                                 {(showAllBullets[index]
                                   ? event.description
                                   : event.description.slice(0, 2)
@@ -191,7 +191,7 @@ export default function Timeline() {
                           {event.title}
                         </h3>
                         <div
-                          className="p-6 rounded-lg mt-2"
+                          className="card p-6 rounded-lg mt-2"
                           style={{
                             backgroundColor: theme === 'dark' ? '#33363b' : '#FFFFFF',
                             boxShadow: theme === 'dark' ? '0 6px 18px rgba(0,0,0,0.6)' : '0 6px 18px rgba(31,41,55,0.06)',
@@ -203,7 +203,7 @@ export default function Timeline() {
                             <p>{event.description}</p>
                           ) : (
                             <>
-                              <ul className="list-disc pl-5 space-y-1 text-left" style={{ fontSize: '12px' }}>
+                              <ul className="list-disc pl-5 space-y-1 text-left text-sm">
                                 {(showAllBullets[index]
                                   ? event.description
                                   : event.description.slice(0, 2)
@@ -229,9 +229,9 @@ export default function Timeline() {
                   </div>
 
                   {/* Mobile content - Centered on line */}
-                  <div className="md:hidden w-full px-8 flex flex-col items-center">
+                  <div className="md:hidden w-full flex flex-col items-center">
                     <div
-                      className="w-full p-6 rounded-lg"
+                      className="card w-full p-6 rounded-lg"
                       style={{
                         backgroundColor: theme === 'dark' ? '#33363b' : '#FFFFFF',
                         boxShadow: theme === 'dark' ? '0 6px 18px rgba(0,0,0,0.6)' : '0 6px 18px rgba(31,41,55,0.06)',
@@ -255,7 +255,7 @@ export default function Timeline() {
                           <p>{event.description}</p>
                         ) : (
                           <>
-                            <ul className="list-disc pl-5 space-y-1 text-left" style={{ fontSize: '12px' }}>
+                            <ul className="list-disc pl-5 space-y-1 text-left text-sm">
                               {(showAllBullets[index]
                                 ? event.description
                                 : event.description.slice(0, 2)
@@ -287,7 +287,7 @@ export default function Timeline() {
         {/* Plain card outside timeline */}
         <div className="mt-16 max-w-2xl mx-auto">
           <div
-            className="p-8 rounded-lg text-center"
+            className="card p-8 rounded-lg text-center"
             style={{
               backgroundColor: theme === 'dark' ? '#33363b' : '#FFFFFF',
               boxShadow: theme === 'dark' ? '0 6px 18px rgba(0,0,0,0.6)' : '0 6px 18px rgba(31,41,55,0.06)',
@@ -297,13 +297,9 @@ export default function Timeline() {
             <h3 className="text-2xl font-bold mb-2" style={{
               color: theme === 'dark' ? '#D4A857' : '#000000',
             }}>
-              If you got this far, thank you!
-            </h3>
-            <p className="text-lg font-semibold mb-4" style={{
-              color: theme === 'dark' ? '#FFFFFF' : '#000000',
-            }}>
               2026 and Beyond
-            </p>
+            </h3>
+           
             <ul className="list-disc pl-5 space-y-2 text-left text-sm" style={{
               color: theme === 'dark' ? '#FFFFFF' : '#4B5563',
             }}>

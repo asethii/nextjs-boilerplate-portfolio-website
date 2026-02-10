@@ -267,6 +267,19 @@ export default function UseCases() {
           />
         </Section>
 
+        <div style={{ marginTop: '40px', marginBottom: '40px', display: 'flex', justifyContent: 'center' }}>
+          <img 
+            src="/lcp-arch.png"
+            alt="Architecture diagram for lead capture platform"
+            style={{ 
+              maxWidth: '100%', 
+              height: 'auto',
+              borderRadius: '8px',
+              boxShadow: theme === 'dark' ? '0 6px 18px rgba(0,0,0,0.6)' : '0 6px 18px rgba(31,41,55,0.06)',
+            }}
+          />
+        </div>
+
         <Section title="The Solution">
           <h5 style={{ fontSize: '14px', fontWeight: '600', marginBottom: '10px', color: theme === 'dark' ? '#D4A857' : '#292C34' }}>
             ✓ Dynamic Wizard UI
@@ -483,7 +496,18 @@ export default function UseCases() {
           </div>
         </Section>
 
-        <Placeholder label="Routing Architecture Diagram" />
+        <div style={{ marginTop: '40px', marginBottom: '40px', display: 'flex', justifyContent: 'center' }}>
+          <img 
+            src="/dbwp.png"
+            alt="Routing Architecture Diagram showing dynamic dealer website system"
+            style={{ 
+              maxWidth: '100%', 
+              height: 'auto',
+              borderRadius: '8px',
+              boxShadow: theme === 'dark' ? '0 6px 18px rgba(0,0,0,0.6)' : '0 6px 18px rgba(31,41,55,0.06)',
+            }}
+          />
+        </div>
 
         <Section title="Key Challenges">
           <div style={{ marginBottom: '16px' }}>
@@ -655,7 +679,18 @@ export default function UseCases() {
           </div>
         </Section>
 
-        <Placeholder label="Icon Font Library & AI Automation Dashboard" />
+        <div style={{ marginTop: '40px', marginBottom: '40px', display: 'flex', justifyContent: 'center' }}>
+          <img 
+            src="/custom-font.png"
+            alt="Icon Font Library and AI Automation Dashboard"
+            style={{ 
+              maxWidth: '100%', 
+              height: 'auto',
+              borderRadius: '8px',
+              boxShadow: theme === 'dark' ? '0 6px 18px rgba(0,0,0,0.6)' : '0 6px 18px rgba(31,41,55,0.06)',
+            }}
+          />
+        </div>
 
         <Section title="Key Challenges">
           <BulletList

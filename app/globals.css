@@ -3,6 +3,16 @@
     padding-left: 20px !important;
     padding-right: 20px !important;
   }
+  
+  /* Reduce font size in card bubbles/tags */
+  .card .text-sm {
+    font-size: 0.5rem !important;
+  }
+  
+  /* Reduce card padding on mobile */
+  .card {
+    padding: 1rem !important;
+  }
 }
 @import "tailwindcss";
 

@@ -14,10 +14,14 @@ export default function ImageCarousel() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const [isInteracting, setIsInteracting] = useState(false);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
   const autoRotateTimer = useRef<NodeJS.Timeout | null>(null);
+  const interactionTimer = useRef<NodeJS.Timeout | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
 
   const [viewportWidth, setViewportWidth] = useState<number>(typeof window !== 'undefined' ? window.innerWidth : 1200);
 
@@ -74,7 +78,16 @@ export default function ImageCarousel() {
     if (!isTransitioning) {
       setIsTransitioning(true);
       setCurrentIndex((prev) => (prev + 1) % slides.length);
+      setIsInteracting(true);
       resetAutoRotate();
+      
+      // Clear interaction flag after 2 seconds
+      if (interactionTimer.current) {
+        clearTimeout(interactionTimer.current);
+      }
+      interactionTimer.current = setTimeout(() => {
+        setIsInteracting(false);
+      }, 2000);
     }
   };
 
@@ -82,7 +95,16 @@ export default function ImageCarousel() {
     if (!isTransitioning) {
       setIsTransitioning(true);
       setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
+      setIsInteracting(true);
       resetAutoRotate();
+      
+      // Clear interaction flag after 2 seconds
+      if (interactionTimer.current) {
+        clearTimeout(interactionTimer.current);
+      }
+      interactionTimer.current = setTimeout(() => {
+        setIsInteracting(false);
+      }, 2000);
     }
   };
 
@@ -116,8 +138,8 @@ export default function ImageCarousel() {
 
   const startAutoRotate = () => {
     autoRotateTimer.current = setInterval(() => {
-      // Only auto-rotate if not hovering and video is not playing
-      if (!isHovering && !isVideoPlaying) {
+      // Only auto-rotate if in view, not hovering, video not playing, and user not interacting
+      if (isInView && !isHovering && !isVideoPlaying && !isInteracting) {
         setCurrentIndex((prev) => (prev + 1) % slides.length);
       }
     }, 5000);
@@ -130,7 +152,7 @@ export default function ImageCarousel() {
         clearInterval(autoRotateTimer.current);
       }
     };
-  }, [isHovering, isVideoPlaying]);
+  }, [isInView, isHovering, isVideoPlaying, isInteracting]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -138,6 +160,22 @@ export default function ImageCarousel() {
     }, 500);
     return () => clearTimeout(timer);
   }, [currentIndex]);
+
+  // Intersection observer to detect if carousel is in view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    if (carouselRef.current) {
+      observer.observe(carouselRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   const handleMouseEnter = () => {
     setIsHovering(true);
@@ -159,6 +197,7 @@ export default function ImageCarousel() {
     <div className="w-full flex justify-center py-8">
       <div className="w-full max-w-[640px] px-[10px] sm:px-[20px]">
         <div
+          ref={carouselRef}
           className="relative overflow-hidden rounded-lg"
           style={{
             perspective: '1000px',

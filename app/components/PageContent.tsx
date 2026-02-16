@@ -9,6 +9,7 @@ import Logo from './Logo';
 import ScrollDownButton from './ScrollDownButton';
 import ImageCarousel from './ImageCarousel';
 import UseCases from './UseCases';
+import TubesCursor from './TubesCursor';
 
 export default function PageContent() {
   const { theme } = useTheme();
@@ -97,13 +98,25 @@ export default function PageContent() {
           backgroundColor: theme === 'dark' ? '#181A20' : '#FAF8F6',
         }}
       >
+        <ClientOnly>
+          <TubesCursor />
+        </ClientOnly>
         <main 
-          className="flex h-full w-full max-w-3xl flex-col items-center justify-center px-16 pt-0 sm:pt-auto"
-          style={{
-            backgroundColor: theme === 'dark' ? '#1F2229' : '#FFFFFF',
-          }}
+          className="flex h-full w-full max-w-3xl flex-col items-center justify-center px-16 pt-0 sm:pt-auto relative z-10"
         >
-          <div className="flex flex-col gap-12 -mt-20 sm:mt-0">
+          <div 
+            className="flex flex-col gap-12 -mt-20 sm:mt-0 relative z-20"
+            style={{
+              width: '150%',
+              height: '150%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundImage: theme === 'dark' 
+                ? 'radial-gradient(circle, rgb(31, 34, 41) 7%, rgb(31, 34, 41) 15%, rgba(31, 34, 41, 0) 57%)'
+                : 'radial-gradient(circle, rgb(255, 255, 255) 7%, rgb(255, 255, 255) 15%, rgba(255, 255, 255, 0) 57%)'
+            }}
+          >
             <ClientOnly>
               <Logo />
             </ClientOnly>
@@ -466,8 +479,7 @@ export default function PageContent() {
 
       {/* Section 3: Timeline - Full Viewport with Extra Spacing */}
       <div 
-        
-        className="min-h-screen flex items-center justify-center pt-20 pb-20"
+        className="w-full min-h-screen flex items-center justify-center pt-20 pb-20"
         style={{
           backgroundColor: theme === 'dark' ? '#181A20' : '#FAF8F6',
         }}

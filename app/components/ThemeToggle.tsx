@@ -19,7 +19,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="p-2 rounded-lg transition-colors"
+      className="relative z-50 p-2 rounded-lg transition-colors"
       style={{
         backgroundColor: theme === 'dark' ? '#292C34' : '#F0EDE7',
         color: theme === 'dark' ? '#D4A857' : '#D4A857',

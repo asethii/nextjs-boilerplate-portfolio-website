@@ -114,3 +114,19 @@ html.dark body {
 .animate-slide-in-right {
   animation: slideInFromRight 0.6s ease-out forwards;
 }
+
+/* Bounce animation for scroll-to elements */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-12px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  75% {
+    transform: translateY(-6px);
+  }
+}

@@ -53,6 +53,11 @@
 }
 
 /* Light Mode (Default) */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 body {
   background: var(--light-bg);
   color: var(--light-primary);
@@ -68,6 +73,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Dark Mode */
 @media (prefers-color-scheme: dark) {
+  html, body {
+    overflow-x: hidden;
+  }
+  
   body {
     background: var(--dark-bg);
     color: var(--dark-primary);
@@ -77,11 +86,13 @@ h1, h2, h3, h4, h5, h6 {
 html.dark {
   background: var(--dark-bg);
   color: var(--dark-primary);
+  overflow-x: hidden;
 }
 
 html.dark body {
   background: var(--dark-bg);
   color: var(--dark-primary);
+  overflow-x: hidden;
 }
 
 /* Slide in animations */
